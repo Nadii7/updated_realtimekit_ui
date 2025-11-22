@@ -11,15 +11,18 @@ import '../../../di/riverpod_di.dart';
 import '../../../widgets/atoms/rtk_app_bar.dart';
 import '../../../widgets/atoms/rtk_text.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_text_button.dart';
-import '../grid/active_particpants_widget.dart';
+import '../grid/active_participants_widget.dart';
 
 class RtkWebinarMeetingRoom extends ConsumerWidget {
+  final Function()? onClose;
+
+  final String remainingTime;
   final AudioDevice? selectedAudioDevice;
   final VideoDevice? selectedVideoDevice;
 
   const RtkWebinarMeetingRoom(
       this.selectedAudioDevice, this.selectedVideoDevice,
-      {super.key});
+      {super.key, required this.remainingTime, required this.onClose});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -81,16 +84,19 @@ class RtkWebinarMeetingRoom extends ConsumerWidget {
       }
     });
 
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Scaffold(
-        appBar: RtkAppBars.webinar(),
+        appBar: RtkAppBars.webinar(remainingTime: remainingTime),
         body: SafeArea(
           child: ref.watch(tabNotifierProvider).isEmpty
               ? const ActiveParticipantsWidget()
               : const RtkPageViewWidget(),
         ),
-        bottomNavigationBar: RtkControlBar.webinar(),
+        bottomNavigationBar: RtkControlBar.webinar(
+          onClose: onClose,
+          remainingTime: remainingTime,
+        ),
       ),
     );
   }

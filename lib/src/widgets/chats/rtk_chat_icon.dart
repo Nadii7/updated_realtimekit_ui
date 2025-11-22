@@ -8,7 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RtkChatIconWidget extends ConsumerWidget {
-  const RtkChatIconWidget({super.key});
+  final String remainingTime;
+  const RtkChatIconWidget({
+    super.key,
+    required this.remainingTime,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,13 +22,12 @@ class RtkChatIconWidget extends ConsumerWidget {
               ref.read(chatListNotifier).length,
             );
         RtkRouter.of(context).push(
-          const ChatsPage(),
           pageName: RouteNames.chats,
+          ChatsPage(remainingTime: remainingTime),
         );
       },
       icon: Icon(
         DyteIcons.chat,
-        // TODO: use AppTheme
         color: globalDesignToken.colorToken.textColor.shade1000,
       ),
     );

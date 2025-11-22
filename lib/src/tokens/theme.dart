@@ -10,23 +10,23 @@ class AppTheme {
   AppTheme(this.colorToken);
 
   ThemeData get theme => ThemeData.from(
+        useMaterial3: true,
         colorScheme: ColorScheme(
-          brightness: Brightness.light,
-          primaryContainer: backgroundColorSwatch.shade800,
-          secondaryContainer: backgroundColorSwatch.shade700,
-          tertiaryContainer: backgroundColorSwatch.shade600,
-          outline: colorToken.backgroundColor.shade700,
-          primary: colorToken.brandColor.shade500,
-          onPrimary: colorToken.textColor.shade1000,
-          secondary: colorToken.backgroundColor.shade1000,
-          onSecondary: colorToken.textColor.shade1000,
           error: StatusColor.error,
+          brightness: Brightness.dark,
           tertiary: StatusColor.success,
           onError: colorToken.textColor.shade1000,
-          surface: colorToken.backgroundColor.shade900,
+          primary: colorToken.brandColor.shade500,
+          onPrimary: colorToken.textColor.shade1000,
           onSurface: colorToken.textColor.shade1000,
+          onSecondary: colorToken.textColor.shade1000,
+          outline: colorToken.backgroundColor.shade700,
+          surface: colorToken.backgroundColor.shade900,
+          secondary: colorToken.backgroundColor.shade1000,
+          primaryContainer: backgroundColorSwatch.shade800,
+          tertiaryContainer: backgroundColorSwatch.shade600,
+          secondaryContainer: backgroundColorSwatch.shade700,
         ),
-        useMaterial3: true,
         textTheme: TextTheme(
           displayLarge: TextStyle(
             color: textColorSwatch.shade1000,

@@ -24,6 +24,7 @@ class RtkAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final PreferredSizeWidget? bottom;
   final double titleSpacing;
+  final String remainingTime;
 
   // Cache theme to avoid repeated creation
   static final _theme = AppTheme(globalDesignToken.colorToken).theme;
@@ -39,6 +40,7 @@ class RtkAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bottom,
     this.titleSpacing = 10,
     this.title,
+    required this.remainingTime,
   });
 
   @override
@@ -94,7 +96,7 @@ class RtkAppBar extends StatelessWidget implements PreferredSizeWidget {
                 .copyWith(color: textColorSwatch.shade700),
           ),
           hspace1,
-          const RtkMeetingTimerWidget()
+          RtkMeetingTimerWidget(remainingTime: remainingTime)
         ],
       ]),
     );
@@ -105,10 +107,11 @@ class RtkAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class _GCAppBar extends RtkAppBar {
-  const _GCAppBar();
+  const _GCAppBar({required super.remainingTime});
 
   Widget _buildAppBar(BuildContext context) {
     return RtkAppBar(
+      remainingTime: remainingTime,
       backgroundColor: RtkAppBar._theme.colorScheme.surface,
       hasLeading: false,
       centerTitle: false,
@@ -127,10 +130,11 @@ class _GCAppBar extends RtkAppBar {
 }
 
 class _WebinarAppBar extends RtkAppBar {
-  const _WebinarAppBar();
+  const _WebinarAppBar({required super.remainingTime});
 
   Widget _buildAppBar(BuildContext context) {
     return RtkAppBar(
+      remainingTime: remainingTime,
       backgroundColor: RtkAppBar._theme.colorScheme.surface,
       hasLeading: false,
       title: _buildAppBarTitle(context),
@@ -148,10 +152,11 @@ class _WebinarAppBar extends RtkAppBar {
 }
 
 class _LivestreamAppBar extends RtkAppBar {
-  const _LivestreamAppBar();
+  const _LivestreamAppBar({required super.remainingTime});
 
   Widget _buildAppBar(BuildContext context) {
     return RtkAppBar(
+      remainingTime: remainingTime,
       backgroundColor: RtkAppBar._theme.colorScheme.surface,
       hasLeading: false,
       title: _buildAppBarTitle(context),
@@ -174,15 +179,15 @@ class _LivestreamAppBar extends RtkAppBar {
 class RtkAppBars {
   RtkAppBars._();
 
-  static RtkAppBar gc() {
-    return const _GCAppBar();
+  static RtkAppBar gc({required String remainingTime}) {
+    return _GCAppBar(remainingTime: remainingTime);
   }
 
-  static RtkAppBar webinar() {
-    return const _WebinarAppBar();
+  static RtkAppBar webinar({required String remainingTime}) {
+    return _WebinarAppBar(remainingTime: remainingTime);
   }
 
-  static RtkAppBar lvs() {
-    return const _LivestreamAppBar();
+  static RtkAppBar lvs({required String remainingTime}) {
+    return _LivestreamAppBar(remainingTime: remainingTime);
   }
 }

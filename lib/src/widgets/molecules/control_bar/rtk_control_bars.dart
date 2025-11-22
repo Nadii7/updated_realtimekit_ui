@@ -14,27 +14,55 @@ import '../stage_req_button_widget.dart';
 class RtkControlBar {
   RtkControlBar._();
 
-  static Widget gc({RtkDesignTokens? designToken}) => SafeArea(
+  static Widget gc({
+    RtkDesignTokens? designToken,
+    required Function()? onClose,
+    required String remainingTime,
+  }) =>
+      SafeArea(
         child: _RtkGCControlBar(
           individualDesignToken: designToken,
+          onClose: onClose,
+          remainingTime: remainingTime,
         ),
       );
-  static Widget webinar({RtkDesignTokens? designToken}) => SafeArea(
+  static Widget webinar({
+    RtkDesignTokens? designToken,
+    required Function()? onClose,
+    required String remainingTime,
+  }) =>
+      SafeArea(
         child: _RtkStageControlBar(
           individualDesignToken: designToken,
+          onClose: onClose,
+          remainingTime: remainingTime,
         ),
       );
-  static Widget livestream({RtkDesignTokens? designToken}) => SafeArea(
+  static Widget livestream({
+    RtkDesignTokens? designToken,
+    required Function()? onClose,
+    required String remainingTime,
+  }) =>
+      SafeArea(
         child: _RtkStageControlBar(
           individualDesignToken: designToken,
+          onClose: onClose,
+          remainingTime: remainingTime,
           canLivestream: rtkMeeting.permissions.livestream.canLivestream,
         ),
       );
 }
 
 class _RtkGCControlBar extends ConsumerStatefulWidget {
+  final Function()? onClose;
+  final String remainingTime;
   final RtkDesignTokens? individualDesignToken;
-  const _RtkGCControlBar({this.individualDesignToken});
+
+  const _RtkGCControlBar({
+    required this.onClose,
+    this.individualDesignToken,
+    required this.remainingTime,
+  });
 
   @override
   ConsumerState<_RtkGCControlBar> createState() => _RtkGCControlBarState();
@@ -84,7 +112,7 @@ class _RtkGCControlBarState extends ConsumerState<_RtkGCControlBar> {
           RtkScreenshareWidget(
             meeting: rtkMeeting,
           ),
-          const MoreButtonWidget(),
+          MoreButtonWidget(remainingTime: widget.remainingTime),
           RtkLeaveButton(meeting: rtkMeeting),
         ],
       ),
@@ -119,10 +147,15 @@ class _OnStageToggleWidgetState extends ConsumerState<OnStageToggleWidget> {
 }
 
 class _RtkStageControlBar extends ConsumerStatefulWidget {
+  final Function()? onClose;
+  final String remainingTime;
+
   final RtkDesignTokens designToken;
   final bool canLivestream;
   final RtkDesignTokens? individualDesignToken;
   _RtkStageControlBar({
+    required this.onClose,
+    required this.remainingTime,
     this.individualDesignToken,
     this.canLivestream = false,
   }) : designToken = individualDesignToken ?? globalDesignToken;
@@ -175,6 +208,7 @@ class _RtkStageControlBarState extends ConsumerState<_RtkStageControlBar> {
             ),
           ),
           MoreButtonWidget(
+            remainingTime: widget.remainingTime,
             canLivestream: widget.canLivestream,
           ),
           RtkLeaveButton(meeting: rtkMeeting),

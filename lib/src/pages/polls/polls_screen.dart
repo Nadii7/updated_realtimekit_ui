@@ -13,13 +13,15 @@ import '../../widgets/atoms/rtk_button.dart';
 import 'widgets/polls_viewer_widget.dart';
 
 class RtkPollsScreen extends StatelessWidget {
-  const RtkPollsScreen({super.key});
+  final String remainingTime;
+  const RtkPollsScreen({super.key, required this.remainingTime});
 
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme(globalDesignToken.colorToken).theme;
     return Scaffold(
       appBar: RtkAppBar(
+        remainingTime: remainingTime,
         title: RtkText(RtkStrings.polls),
         hasLeading: false,
         actions: [
@@ -43,7 +45,7 @@ class RtkPollsScreen extends StatelessWidget {
                 height: context.adjust(48),
                 onPressed: () {
                   RtkRouter.of(context).push(
-                    const CreatePollPage(),
+                    CreatePollPage(remainingTime: remainingTime),
                   );
                 },
                 child: Row(

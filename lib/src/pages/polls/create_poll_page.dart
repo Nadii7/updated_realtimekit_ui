@@ -17,8 +17,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../widgets/atoms/rtk_icon_button.dart';
 
 class CreatePollPage extends ConsumerStatefulWidget {
-  const CreatePollPage({super.key});
-
+  final String remainingTime;
+  const CreatePollPage({
+    super.key,
+    required this.remainingTime,
+  });
   @override
   ConsumerState<CreatePollPage> createState() => _CreatePollPageState();
 }
@@ -42,6 +45,7 @@ class _CreatePollPageState extends ConsumerState<CreatePollPage> {
     final theme = AppTheme(globalDesignToken.colorToken).theme;
     return Scaffold(
       appBar: RtkAppBar(
+        remainingTime: widget.remainingTime,
         title: RtkText(RtkStrings.createPoll),
         hasLeading: false,
         actions: [

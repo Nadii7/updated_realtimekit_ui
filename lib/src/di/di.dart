@@ -8,7 +8,7 @@ final getIt = GetIt.instance;
 class RtkDependencyHandler {
   static late RealtimeKitUIInfo uikitInfo;
   static late RealtimekitClient? client;
-  static void setupDependecies(
+  static void setupDependencies(
     RealtimeKitUIInfo rtkUIKitInfo,
     RealtimekitClient? client,
   ) {

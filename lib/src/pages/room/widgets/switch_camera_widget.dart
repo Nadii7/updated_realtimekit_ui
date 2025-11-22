@@ -14,7 +14,6 @@ class SwitchCameraWidget extends ConsumerWidget {
     Widget cameraToggler = RtkIconButton(
       icon: const Icon(DyteIcons.camera_switch),
       onPressed: () async {
-        // TODO: improve the logic
         final selectedVideoDevice =
             await rtkMeeting.localUser.getSelectedVideoDevice();
         final videoDevices = await rtkMeeting.localUser.getVideoDevices();

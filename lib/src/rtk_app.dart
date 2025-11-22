@@ -35,16 +35,24 @@ class RealtimeKitUIBuilder {
     String? arbPath,
     RealtimekitClient? meeting,
     bool skipSetupPage = false,
+    required bool canExit,
+    required Function()? onExit,
+    required Function()? onClose,
+    required String remainingTime,
   }) {
     if (arbPath != null) {
       RtkStrings(arbPath: arbPath).init();
     }
     if (!getIt.isRegistered<RtkDesignTokens>()) {
-      RtkDependencyHandler.setupDependecies(uiKitInfo, meeting);
+      RtkDependencyHandler.setupDependencies(uiKitInfo, meeting);
     }
     return RealtimeKitUI(
       uiKitInfo,
       skipSetupPage: skipSetupPage,
+      onExit: onExit,
+      canExit: canExit,
+      onClose: onClose,
+      remainingTime: remainingTime,
     );
   }
 
@@ -56,17 +64,32 @@ class RealtimeKitUIBuilder {
 class RealtimeKitUI extends StatelessWidget {
   final RealtimeKitUIInfo _uiKitInfo;
   final bool skipSetupPage;
+  final bool canExit;
+  final Function()? onExit;
+  final Function()? onClose;
+  final String remainingTime;
+
   const RealtimeKitUI(
     this._uiKitInfo, {
     this.skipSetupPage = false,
     super.key,
+    required this.onExit,
+    required this.canExit,
+    required this.onClose,
+    required this.remainingTime,
   });
   RealtimeKitUIInfo get uikitInfo => _uiKitInfo;
   RealtimekitClient get meeting => rtkMeeting;
 
   Widget _app() {
     rtkConfig.skipSetupScreen = skipSetupPage;
-    return RtkApp(uikitInfo.meetingInfo);
+    return RtkApp(
+      onExit: onExit,
+      canExit: canExit,
+      onClose: onClose,
+      uikitInfo.meetingInfo,
+      remainingTime: remainingTime,
+    );
   }
 
   @override
@@ -76,10 +99,7 @@ class RealtimeKitUI extends StatelessWidget {
       observers: [Logger()],
       meeting: rtkMeeting,
       uiKitInfo: uikitInfo,
-      child: WillPopScope(
-        onWillPop: () async => false,
-        child: _app(),
-      ),
+      child: PopScope(canPop: false, child: _app()),
     );
   }
 }
@@ -106,7 +126,7 @@ class _RtkProviderState extends State<RtkProvider> {
   @override
   void initState() {
     if (!getIt.isRegistered<RtkDesignTokens>()) {
-      RtkDependencyHandler.setupDependecies(
+      RtkDependencyHandler.setupDependencies(
         widget.uiKitInfo,
         widget.meeting,
       );

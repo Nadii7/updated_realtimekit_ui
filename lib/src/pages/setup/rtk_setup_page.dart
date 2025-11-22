@@ -18,10 +18,15 @@ import 'package:realtimekit_ui/src/widgets/atoms/rtk_icon_button.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/rtk_snackbar.dart';
 
 class RtkSetupScreen extends ConsumerStatefulWidget {
+  final String remainingTime;
   final AudioDevice? selectedAudioDevice;
   final VideoDevice? selectedVideoDevice;
-  const RtkSetupScreen(this.selectedAudioDevice, this.selectedVideoDevice,
-      {super.key});
+  const RtkSetupScreen(
+    this.selectedAudioDevice,
+    this.selectedVideoDevice, {
+    super.key,
+    required this.remainingTime,
+  });
 
   @override
   ConsumerState<RtkSetupScreen> createState() => _SetupPageState();
@@ -121,6 +126,7 @@ class _HorizontalSetupPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SetupScreenControlButtons(
+              remainingTime: widget.remainingTime,
               selectedAudioDevice: widget.selectedAudioDevice,
               selectedVideoDevice: widget.selectedVideoDevice,
             ),
@@ -185,6 +191,7 @@ class _VerticalSetupPage extends StatelessWidget {
           ),
           vspace2,
           SetupScreenControlButtons(
+            remainingTime: widget.remainingTime,
             selectedAudioDevice: widget.selectedAudioDevice,
             selectedVideoDevice: widget.selectedVideoDevice,
           ),
@@ -221,11 +228,16 @@ class _VerticalSetupPage extends StatelessWidget {
 }
 
 class SetupScreenControlButtons extends StatelessWidget {
+  final String remainingTime;
   final AudioDevice? selectedAudioDevice;
   final VideoDevice? selectedVideoDevice;
 
-  const SetupScreenControlButtons(
-      {this.selectedAudioDevice, this.selectedVideoDevice, super.key});
+  const SetupScreenControlButtons({
+    super.key,
+    this.selectedAudioDevice,
+    this.selectedVideoDevice,
+    required this.remainingTime,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -293,7 +305,8 @@ class SetupScreenControlButtons extends StatelessWidget {
             selectedVideoDevice != null)
           RtkIconButton(
             onPressed: () {
-              RtkRouter.of(context).push(SetupSettingsPage());
+              RtkRouter.of(context)
+                  .push(SetupSettingsPage(remainingTime: remainingTime));
             },
             icon: Icon(
               DyteIcons.settings,

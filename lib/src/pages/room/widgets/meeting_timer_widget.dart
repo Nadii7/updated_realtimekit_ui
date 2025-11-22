@@ -6,21 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RtkMeetingTimerWidget extends ConsumerWidget {
-  const RtkMeetingTimerWidget({super.key});
+  final String remainingTime;
+
+  const RtkMeetingTimerWidget({super.key, required this.remainingTime});
 
   static final _theme = AppTheme(globalDesignToken.colorToken).theme;
 
-  static String _formatDuration(Duration duration) {
-    final hours = duration.inHours;
-    final minutes = duration.inMinutes.remainder(60);
-    final seconds = duration.inSeconds.remainder(60);
+  // static String _formatDuration(Duration duration) {
+  //   final hours = duration.inHours;
+  //   final minutes = duration.inMinutes.remainder(60);
+  //   final seconds = duration.inSeconds.remainder(60);
 
-    if (hours > 0) {
-      return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
-    } else {
-      return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
-    }
-  }
+  //   if (hours > 0) {
+  //     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  //   } else {
+  //     return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +31,8 @@ class RtkMeetingTimerWidget extends ConsumerWidget {
     return RepaintBoundary(
       child: meetingDuration != null
           ? RtkText(
-              _formatDuration(meetingDuration),
+              remainingTime,
+              // _formatDuration(meetingDuration),
               rtkTextStyle: _theme.textTheme.bodyLarge,
             )
           : const RtkText(

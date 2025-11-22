@@ -14,13 +14,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RtkPluginsScreen extends ConsumerWidget {
-  const RtkPluginsScreen({super.key});
+  final String remainingTime;
+  const RtkPluginsScreen({
+    super.key,
+    required this.remainingTime,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final plugins = rtkMeeting.plugins.all;
     return Scaffold(
       appBar: RtkAppBar(
+        remainingTime: remainingTime,
         title: RtkText(RtkStrings.plugins),
         hasLeading: false,
         actions: [

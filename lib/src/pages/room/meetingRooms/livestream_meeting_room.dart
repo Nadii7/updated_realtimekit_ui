@@ -1,5 +1,5 @@
 import 'package:realtimekit_ui/src/di/di.dart';
-import 'package:realtimekit_ui/src/pages/room/grid/active_particpants_widget.dart';
+import 'package:realtimekit_ui/src/pages/room/grid/active_participants_widget.dart';
 import 'package:realtimekit_ui/src/pages/room/grid/rtk_page_view_widget.dart';
 
 import 'package:realtimekit_ui/src/strings.dart';
@@ -16,12 +16,14 @@ import '../../../widgets/atoms/rtk_app_bar.dart';
 import '../../../widgets/atoms/rtk_text.dart';
 
 class RtkLivestreamMeetingRoom extends ConsumerWidget {
+  final Function()? onClose;
+  final String remainingTime;
   final AudioDevice? selectedAudioDevice;
   final VideoDevice? selectedVideoDevice;
 
   const RtkLivestreamMeetingRoom(
       this.selectedAudioDevice, this.selectedVideoDevice,
-      {super.key});
+      {super.key, required this.onClose, required this.remainingTime});
 
   Widget _buildCancelButton(ThemeData theme, BuildContext context) {
     return RtkTextButton(
@@ -91,25 +93,31 @@ class RtkLivestreamMeetingRoom extends ConsumerWidget {
     });
 
     if (!isOnStage) {
-      return WillPopScope(
-        onWillPop: () async => false,
+      return PopScope(
+        canPop: false,
         child: Scaffold(
-          appBar: RtkAppBars.lvs(),
+          appBar: RtkAppBars.lvs(remainingTime: remainingTime),
           body: const SafeArea(child: ShowLivestreamWidget()),
-          bottomNavigationBar: RtkControlBar.livestream(),
+          bottomNavigationBar: RtkControlBar.livestream(
+            onClose: onClose,
+            remainingTime: remainingTime,
+          ),
         ),
       );
     } else {
-      return WillPopScope(
-        onWillPop: () async => false,
+      return PopScope(
+        canPop: false,
         child: Scaffold(
-          appBar: RtkAppBars.lvs(),
+          appBar: RtkAppBars.lvs(remainingTime: remainingTime),
           body: SafeArea(
             child: ref.watch(tabNotifierProvider).isEmpty
                 ? const ActiveParticipantsWidget()
                 : const RtkPageViewWidget(),
           ),
-          bottomNavigationBar: RtkControlBar.livestream(),
+          bottomNavigationBar: RtkControlBar.livestream(
+            onClose: onClose,
+            remainingTime: remainingTime,
+          ),
         ),
       );
     }

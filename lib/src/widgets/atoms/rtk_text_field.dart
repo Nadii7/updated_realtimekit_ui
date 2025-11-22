@@ -44,26 +44,34 @@ class RtkTextField extends StatelessWidget {
       width: width,
       height: height,
       child: TextFormField(
-        maxLines: maxLines,
-        validator: validator,
-        style: theme.textTheme.bodyMedium,
         enabled: enabled,
-        cursorColor: brandColorSwatch.shade500,
-        keyboardType: inputType,
+        maxLines: maxLines,
         onChanged: onChanged,
+        validator: validator,
+        controller: controller,
+        keyboardType: inputType,
+        style: theme.textTheme.bodyMedium,
+        cursorColor: brandColorSwatch.shade500,
+        strutStyle: const StrutStyle(forceStrutHeight: true),
         textInputAction: textInputAction ?? TextInputAction.next,
+        onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(
-          fillColor: fillColor ?? backgroundColorSwatch.shade900,
           filled: true,
+          isDense: true,
+          counterText: '',
           hintText: hintText,
+          hintStyle: hintStyle ?? theme.textTheme.bodyMedium,
+          fillColor: fillColor ?? backgroundColorSwatch.shade900,
           border: border ??
               OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(borderToken.getRadius(BorderSize.one)))),
-          hintStyle: hintStyle ?? theme.textTheme.bodyMedium,
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    borderToken.getRadius(BorderSize.one),
+                  ),
+                ),
+              ),
         ),
-        controller: controller,
       ),
     );
   }

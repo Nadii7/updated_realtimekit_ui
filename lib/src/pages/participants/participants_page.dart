@@ -25,7 +25,12 @@ import '../../utils/generate_key.dart';
 import '../../widgets/atoms/rtk_button.dart';
 
 class RtkParticipantsPage extends ConsumerStatefulWidget {
-  const RtkParticipantsPage({super.key});
+  final String remainingTime;
+
+  const RtkParticipantsPage({
+    super.key,
+    required this.remainingTime,
+  });
 
   @override
   ConsumerState<RtkParticipantsPage> createState() =>
@@ -77,6 +82,7 @@ class _RtkParticipantsPageState extends ConsumerState<RtkParticipantsPage> {
 
     return Scaffold(
       appBar: RtkAppBar(
+        remainingTime: widget.remainingTime,
         title: RtkText(RtkStrings.participants),
         leadingIcon: const Icon(DyteIcons.dismiss),
         onPressed: () => RtkRouter.of(context).pop(),

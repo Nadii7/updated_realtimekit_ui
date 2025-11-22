@@ -44,21 +44,21 @@ class RtkIconButton extends StatelessWidget {
         children: [
           if (isDisabled)
             const Positioned(
-              right: 4,
               top: 4,
+              right: 4,
               child: Icon(
+                size: 14,
                 DyteIcons.warning,
                 color: StatusColor.warning,
-                size: 14,
               ),
             ),
           IconButton(
-            iconSize: iconSize ?? 24,
+            icon: icon,
             splashRadius: 1,
+            padding: padding,
+            iconSize: iconSize ?? 24,
             onPressed: isDisabled ? null : onPressed,
             disabledColor: backgroundColorSwatch.shade700,
-            icon: icon,
-            padding: padding,
           ),
         ],
       ),

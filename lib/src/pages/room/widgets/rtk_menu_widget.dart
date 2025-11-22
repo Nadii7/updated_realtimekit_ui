@@ -20,9 +20,12 @@ import 'package:realtimekit_ui/src/pages/participants/participants_page.dart';
 
 class RtkMenuWidget extends ConsumerWidget {
   final bool canLivestream;
+  final String remainingTime;
+
   const RtkMenuWidget({
     super.key,
     this.canLivestream = false,
+    required this.remainingTime,
   });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,14 +52,16 @@ class RtkMenuWidget extends ConsumerWidget {
           title: RtkText(RtkStrings.polls),
           onTap: () {
             RtkRouter.of(context).pop();
-            RtkRouter.of(context)
-                .push(const RtkPollsScreen(), pageName: RouteNames.polls);
+            RtkRouter.of(context).push(
+              pageName: RouteNames.polls,
+              RtkPollsScreen(remainingTime: remainingTime),
+            );
             ref.read(unreadPollsNotifier.notifier).markAllAsRead(
                   ref.read(pollsListNotifier).length,
                 );
           },
           trailing: UnreadCountWidget(
-            unreadNotitifers: [unreadPollsNotifier],
+            unreadNotifiers: [unreadPollsNotifier],
           ),
         ),
       if (rtkMeeting.permissions.chat.canSendText ||
@@ -70,12 +75,12 @@ class RtkMenuWidget extends ConsumerWidget {
                   ref.read(chatListNotifier).length,
                 );
             RtkRouter.of(context).push(
-              const ChatsPage(),
               pageName: RouteNames.chats,
+              ChatsPage(remainingTime: remainingTime),
             );
           },
           trailing: UnreadCountWidget(
-            unreadNotitifers: [unreadChatNotifier],
+            unreadNotifiers: [unreadChatNotifier],
           ),
         ),
       RtkListTile(
@@ -84,19 +89,18 @@ class RtkMenuWidget extends ConsumerWidget {
         onTap: () {
           RtkRouter.of(context).pop();
           RtkRouter.of(context).push(
-            const RtkParticipantsPage(),
             pageName: RouteNames.participants,
+            RtkParticipantsPage(remainingTime: remainingTime),
           );
         },
         trailing: UnreadCountWidget(
-          unreadNotitifers: [
+          unreadNotifiers: [
             unreadStageRequestCountNotifier,
             unreadWaitlistedCountNotifier
           ],
         ),
       ),
       if (hostPermissions.canTriggerRecording) const RecorderButton(),
-      // TODO: @thisisamank restore plugin functionality after mobile-core release
       // if (rtkMobileClient.permissions.plugin.canLaunch ||
       //     rtkMobileClient.permissions.plugin.canClose)
       //   RtkListTile(
@@ -121,8 +125,8 @@ class RtkMenuWidget extends ConsumerWidget {
         onTap: () {
           RtkRouter.of(context).pop();
           RtkRouter.of(context).push(
-            SetupSettingsPage(),
             pageName: RouteNames.settings,
+            SetupSettingsPage(remainingTime: remainingTime),
           );
         },
       ),

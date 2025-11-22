@@ -17,7 +17,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 
 class RoomRoutePage extends ConsumerStatefulWidget {
-  const RoomRoutePage({super.key});
+  final Function()? onClose;
+  final String remainingTime;
+
+  const RoomRoutePage({
+    super.key,
+    required this.onClose,
+    required this.remainingTime,
+  });
 
   @override
   ConsumerState<RoomRoutePage> createState() => _RoomRoutePageState();
@@ -77,10 +84,14 @@ class _RoomRoutePageState extends ConsumerState<RoomRoutePage> {
                     rtkMeeting.joinRoom();
                   } else {
                     await Navigator.pushReplacement(
+                      // ignore: use_build_context_synchronously
                       context,
                       MaterialPageRoute(
                         builder: (context) => RtkSetupScreen(
-                            selectedAudioDevice, selectedVideoDevice),
+                          selectedAudioDevice,
+                          selectedVideoDevice,
+                          remainingTime: widget.remainingTime,
+                        ),
                         settings: RouteSettings(name: RouteNames.setup),
                       ),
                     );
@@ -112,7 +123,10 @@ class _RoomRoutePageState extends ConsumerState<RoomRoutePage> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const RtkGCMeetingRoom(),
+                  builder: (context) => RtkGCMeetingRoom(
+                    onClose: widget.onClose,
+                    remainingTime: widget.remainingTime,
+                  ),
                   settings: RouteSettings(name: RouteNames.meeting),
                 ),
               );
@@ -122,7 +136,11 @@ class _RoomRoutePageState extends ConsumerState<RoomRoutePage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => RtkWebinarMeetingRoom(
-                      selectedAudioDevice, selectedVideoDevice),
+                    selectedAudioDevice,
+                    selectedVideoDevice,
+                    onClose: widget.onClose,
+                    remainingTime: widget.remainingTime,
+                  ),
                   settings: RouteSettings(name: RouteNames.meeting),
                 ),
               );
@@ -132,7 +150,11 @@ class _RoomRoutePageState extends ConsumerState<RoomRoutePage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => RtkLivestreamMeetingRoom(
-                      selectedAudioDevice, selectedVideoDevice),
+                    selectedAudioDevice,
+                    selectedVideoDevice,
+                    onClose: widget.onClose,
+                    remainingTime: widget.remainingTime,
+                  ),
                   settings: RouteSettings(name: RouteNames.meeting),
                 ),
               );
@@ -207,15 +229,25 @@ class _RoomRoutePageState extends ConsumerState<RoomRoutePage> {
               Widget meetingRoom;
               switch (rtkMeeting.meta.meetingType) {
                 case RtkMeetingType.groupCall:
-                  meetingRoom = const RtkGCMeetingRoom();
+                  meetingRoom = RtkGCMeetingRoom(
+                    onClose: widget.onClose,
+                    remainingTime: widget.remainingTime,
+                  );
                   break;
                 case RtkMeetingType.webinar:
                   meetingRoom = RtkWebinarMeetingRoom(
-                      selectedAudioDevice, selectedVideoDevice);
+                    selectedAudioDevice,
+                    selectedVideoDevice,
+                    onClose: widget.onClose,
+                    remainingTime: widget.remainingTime,
+                  );
                   break;
                 case RtkMeetingType.livestream:
                   meetingRoom = RtkLivestreamMeetingRoom(
-                      selectedAudioDevice, selectedVideoDevice);
+                      onClose: widget.onClose,
+                      remainingTime: widget.remainingTime,
+                      selectedAudioDevice,
+                      selectedVideoDevice);
                   break;
               }
 
@@ -284,13 +316,14 @@ class ReconnectionNotificationWidget extends ConsumerWidget {
     final colorScheme = theme.colorScheme;
 
     return Dialog(
-      backgroundColor: colorScheme.surfaceContainerHighest.withOpacity(0.95),
+      backgroundColor:
+          colorScheme.surfaceContainerHighest.withValues(alpha: 0.95),
       elevation: 0,
       insetPadding: const EdgeInsets.symmetric(horizontal: 32),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
         side: BorderSide(
-          color: colorScheme.outlineVariant.withOpacity(0.2),
+          color: colorScheme.outlineVariant.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -328,7 +361,8 @@ class ReconnectionNotificationWidget extends ConsumerWidget {
                       Text(
                         'Trying to restore your connection',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: colorScheme.onSurfaceVariant.withOpacity(0.7),
+                          color: colorScheme.onSurfaceVariant
+                              .withValues(alpha: 0.7),
                         ),
                       ),
                     ],

@@ -5,7 +5,6 @@ import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
 import 'package:flutter/material.dart';
 
-// TODO: convert it to not use Riverpod
 class PinnedWidget extends StatefulWidget {
   const PinnedWidget(this.participant, {super.key});
 
@@ -28,8 +27,8 @@ class _PinnedWidgetState extends State<PinnedWidget> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: _pinNotifier!,
-        builder: (context, pinnedParticpant, child) {
-          if (pinnedParticpant?.id == widget.participant.id) {
+        builder: (context, pinnedParticipant, child) {
+          if (pinnedParticipant?.id == widget.participant.id) {
             return DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),

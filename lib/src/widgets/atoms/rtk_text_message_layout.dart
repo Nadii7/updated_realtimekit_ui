@@ -48,7 +48,6 @@ class RtkTextMessageWidget extends StatelessWidget {
   }
 
   TextSpan _styleUrlsInText(String text) {
-    // TODO: we can alter this acc to web version of dyte.
     final urlRegex = RegExp(r'\b(?:https?://|www\.)\S+\b');
 
     List<InlineSpan> spans = [];

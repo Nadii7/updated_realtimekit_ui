@@ -23,7 +23,6 @@ class _AllPollsState extends ConsumerState<AllPolls> {
   @override
   Widget build(BuildContext context) {
     // const pollPermissions = true;
-// TODO : Add permission check
     return SizedBox(
         height: context.height * .9,
         child: ListView.separated(

@@ -185,9 +185,7 @@ class SelfAudioNotifier extends ValueNotifier<MediaToggleState>
   void onPermissionsUpdated(SelfPermissions permissions) {}
 
   @override
-  void onUpdate(RtkSelfParticipant participant) {
-    // TODO: implement onUpdate
-  }
+  void onUpdate(RtkSelfParticipant participant) {}
 
   @override
   void onScreenShareUpdate(bool isEnabled) {}

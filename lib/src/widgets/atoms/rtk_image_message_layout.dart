@@ -85,7 +85,7 @@ class RtkImageMessageLayout extends StatelessWidget {
                   width: 32,
                   decoration: BoxDecoration(
                     color: globalDesignToken.colorToken.textColor.shade800
-                        .withOpacity(.3),
+                        .withValues(alpha: .3),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: IconButton(
@@ -108,7 +108,7 @@ class RtkImageMessageLayout extends StatelessWidget {
                   width: 32,
                   decoration: BoxDecoration(
                     color: globalDesignToken.colorToken.textColor.shade800
-                        .withOpacity(.3),
+                        .withValues(alpha: .3),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: IconButton(

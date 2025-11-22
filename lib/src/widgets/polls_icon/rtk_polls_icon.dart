@@ -7,20 +7,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RtkPollsIconWidget extends ConsumerWidget {
-  const RtkPollsIconWidget({super.key});
+  final String remainingTime;
+  const RtkPollsIconWidget({
+    super.key,
+    required this.remainingTime,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
       onPressed: () {
         RtkRouter.of(context).push(
-          const RtkPollsScreen(),
           pageName: RouteNames.polls,
+          RtkPollsScreen(remainingTime: remainingTime),
         );
       },
       icon: Icon(
         DyteIcons.poll,
-        // TODO: use AppTheme
         color: globalDesignToken.colorToken.textColor.shade1000,
       ),
     );

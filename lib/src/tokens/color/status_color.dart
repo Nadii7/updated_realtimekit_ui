@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO: @Saksham we need to remove this file.
 class StatusColor {
   StatusColor._();
   static const Color error = Color(0xFFFF2D2D);

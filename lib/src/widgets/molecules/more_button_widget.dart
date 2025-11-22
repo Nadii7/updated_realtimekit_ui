@@ -10,12 +10,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../di/di.dart';
 
 class MoreButtonWidget extends ConsumerWidget {
+  final String remainingTime;
   final bool canLivestream;
   final bool showLabel;
   const MoreButtonWidget({
     super.key,
     this.canLivestream = false,
     this.showLabel = false,
+    required this.remainingTime,
   });
 
   @override
@@ -33,6 +35,7 @@ class MoreButtonWidget extends ConsumerWidget {
                 await showModalBottomSheet(
                   context: context,
                   builder: (context) => RtkMenuWidget(
+                    remainingTime: remainingTime,
                     canLivestream: canLivestream,
                   ),
                 );
@@ -43,7 +46,7 @@ class MoreButtonWidget extends ConsumerWidget {
             top: 0,
             right: 4,
             child: UnreadCountWidget(
-              unreadNotitifers: [
+              unreadNotifiers: [
                 unreadChatNotifier,
                 unreadPollsNotifier,
                 unreadWaitlistedCountNotifier,
@@ -58,23 +61,23 @@ class MoreButtonWidget extends ConsumerWidget {
 }
 
 class UnreadCountWidget extends ConsumerWidget {
-  final List<NotifierProvider<Notifier<int>, int>> unreadNotitifers;
-  const UnreadCountWidget({super.key, required this.unreadNotitifers});
+  final List<NotifierProvider<Notifier<int>, int>> unreadNotifiers;
+  const UnreadCountWidget({super.key, required this.unreadNotifiers});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final int totalUnreads =
-        unreadNotitifers.map<int>((e) => ref.watch(e)).reduce((a, b) => a + b);
-    final bool isIndividualUnreads = unreadNotitifers.length <= 2;
+    final int totalUnread =
+        unreadNotifiers.map<int>((e) => ref.watch(e)).reduce((a, b) => a + b);
+    final bool isIndividualUnread = unreadNotifiers.length <= 2;
     final theme = AppTheme(globalDesignToken.colorToken).theme;
     return OrientationBuilder(builder: (context, orientation) {
       final bool isPortrait = orientation == Orientation.portrait;
-      final markDiameter = isIndividualUnreads
+      final markDiameter = isIndividualUnread
           ? vspace3.height
           : isPortrait
               ? vspace3.height!
               : hspace3.width!;
-      return totalUnreads > 0
+      return totalUnread > 0
           ? Container(
               height: markDiameter,
               width: markDiameter,
@@ -84,19 +87,19 @@ class UnreadCountWidget extends ConsumerWidget {
               ),
               child: Center(
                 child: RtkText(
-                  (totalUnreads > 99
+                  (totalUnread > 99
                       ? "99+"
-                      : totalUnreads
-                          .toString()), // (totalUnreads > 99 ? "99+" : totalUnreads.toString()),
+                      : totalUnread
+                          .toString()), // (totalUnread > 99 ? "99+" : totalUnread.toString()),
                   rtkTextStyle: theme.textTheme.bodyMedium!.copyWith(
                     color: Colors.white,
-                    fontSize: totalUnreads > 99
-                        ? isIndividualUnreads
+                    fontSize: totalUnread > 99
+                        ? isIndividualUnread
                             ? vspace1_25.height!
                             : isPortrait
                                 ? vspace1_25.height!
                                 : hspace1.width!
-                        : isIndividualUnreads
+                        : isIndividualUnread
                             ? vspace1_5.height!
                             : isPortrait
                                 ? vspace1_75.height!

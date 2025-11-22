@@ -14,8 +14,11 @@ import 'package:realtimekit_ui/src/widgets/molecules/audio_devices_loader.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/video_devices_loader.dart';
 
 class SetupSettingsPage extends ConsumerWidget {
+  final String remainingTime;
+
   SetupSettingsPage({
     super.key,
+    required this.remainingTime,
   });
 
   final mediaPermissions = rtkMeeting.permissions.media;
@@ -24,6 +27,7 @@ class SetupSettingsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: RtkAppBar(
+        remainingTime: remainingTime,
         hasLeading: false,
         actions: [
           IconButton(

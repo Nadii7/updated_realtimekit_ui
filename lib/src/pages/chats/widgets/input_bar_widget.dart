@@ -38,56 +38,58 @@ class _InputBarWidgetState extends ConsumerState<InputBarWidget> {
       width: context.width,
       padding: const EdgeInsets.all(10),
       color: theme.colorScheme.primaryContainer,
-      child: Row(children: [
-        if (canSendFiles) ...[
-          RtkIconButton(
-            backgroundColor: theme.colorScheme.secondaryContainer,
-            icon: Icon(
-              DyteIcons.add,
-              color: theme.colorScheme.onSecondary,
+      child: SafeArea(
+        child: Row(children: [
+          if (canSendFiles) ...[
+            RtkIconButton(
+              backgroundColor: theme.colorScheme.secondaryContainer,
+              icon: Icon(
+                DyteIcons.add,
+                color: theme.colorScheme.onSecondary,
+              ),
+              onPressed: () async => await showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => const AttachmentsSheetWidget(),
+              ),
             ),
-            onPressed: () async => await showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (context) => const AttachmentsSheetWidget(),
+          ],
+          if (canSendText) ...[
+            Expanded(
+              child: RtkTextField(
+                height: null,
+                width: null,
+                fillColor: theme.colorScheme.primaryContainer,
+                controller: _messageController,
+                hintText: '${RtkStrings.message}...',
+                hintStyle: theme.textTheme.titleMedium,
+                border: InputBorder.none,
+                maxLines: null,
+              ),
             ),
-          ),
-        ],
-        if (canSendText) ...[
-          Expanded(
-            child: RtkTextField(
-              height: null,
-              width: null,
-              fillColor: theme.colorScheme.primaryContainer,
-              controller: _messageController,
-              hintText: '${RtkStrings.message}...',
-              hintStyle: theme.textTheme.titleMedium,
-              border: InputBorder.none,
-              maxLines: null,
-            ),
-          ),
-          RtkIconButton(
-            backgroundColor: theme.colorScheme.primary,
-            icon: Icon(
-              DyteIcons.send,
-              color: theme.colorScheme.onSecondary,
-            ),
-            onPressed: () async {
-              final text = _messageController.text;
-              if (text.trim().isEmpty) {
-                ref
-                    .read(notificationProvider.notifier)
-                    .showCustomNotification('Message cannot be empty');
-                return;
-              }
-              await ref
-                  .read(chatActionNotifierProvider.notifier)
-                  .sendText(text);
-              _messageController.clear();
-            },
-          )
-        ]
-      ]),
+            RtkIconButton(
+              backgroundColor: theme.colorScheme.primary,
+              icon: Icon(
+                DyteIcons.send,
+                color: theme.colorScheme.onSecondary,
+              ),
+              onPressed: () async {
+                final text = _messageController.text;
+                if (text.trim().isEmpty) {
+                  ref
+                      .read(notificationProvider.notifier)
+                      .showCustomNotification('Message cannot be empty');
+                  return;
+                }
+                await ref
+                    .read(chatActionNotifierProvider.notifier)
+                    .sendText(text);
+                _messageController.clear();
+              },
+            )
+          ]
+        ]),
+      ),
     );
   }
 }

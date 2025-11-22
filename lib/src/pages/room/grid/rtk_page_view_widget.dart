@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/src/pages/room/grid/rtk_tab_viewer_widget.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/page_indicator.dart';
 import 'package:flutter/material.dart';
 
-import 'active_particpants_widget.dart';
+import 'active_participants_widget.dart';
 
 class RtkPageViewWidget extends StatefulWidget {
   const RtkPageViewWidget({super.key});

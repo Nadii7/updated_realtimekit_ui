@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/data/states/notification_state.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/di/riverpod_di.dart';
-import 'package:realtimekit_ui/src/pages/room/grid/active_particpants_widget.dart';
+import 'package:realtimekit_ui/src/pages/room/grid/active_participants_widget.dart';
 import 'package:realtimekit_ui/src/pages/room/grid/rtk_page_view_widget.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_app_bar.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/control_bar/rtk_control_bars.dart';
@@ -13,7 +13,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 const appbarHeight = 56.0;
 
 class RtkGCMeetingRoom extends ConsumerWidget {
-  const RtkGCMeetingRoom({super.key});
+  final Function()? onClose;
+  final String remainingTime;
+
+  const RtkGCMeetingRoom({
+    super.key,
+    required this.onClose,
+    required this.remainingTime,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,17 +34,20 @@ class RtkGCMeetingRoom extends ConsumerWidget {
       }
     });
 
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Scaffold(
-        appBar: RtkAppBars.gc(),
+        appBar: RtkAppBars.gc(remainingTime: remainingTime),
         body: SafeArea(
           child: ref.watch(tabNotifierProvider).isEmpty ||
                   rtkMeeting.meta.meetingType == RtkMeetingType.livestream
               ? const ActiveParticipantsWidget()
               : const RtkPageViewWidget(),
         ),
-        bottomNavigationBar: RtkControlBar.gc(),
+        bottomNavigationBar: RtkControlBar.gc(
+          onClose: onClose,
+          remainingTime: remainingTime,
+        ),
       ),
     );
   }

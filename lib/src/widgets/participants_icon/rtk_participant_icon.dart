@@ -7,15 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RtkParticipantsIconWidget extends ConsumerWidget {
-  const RtkParticipantsIconWidget({super.key});
+  final String remainingTime;
+  const RtkParticipantsIconWidget({
+    super.key,
+    required this.remainingTime,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
       onPressed: () {
         RtkRouter.of(context).push(
-          const RtkParticipantsPage(),
           pageName: RouteNames.participants,
+          RtkParticipantsPage(remainingTime: remainingTime),
         );
       },
       icon: Icon(
