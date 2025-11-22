@@ -91,12 +91,8 @@ class VideoNotifier extends ValueNotifier<bool>
   void onUpdate(RtkParticipants participants) {}
 
   @override
-  void onNewBroadcastMessage(String type, Map<String, dynamic> payload) {
-    // TODO: implement onNewBroadcastMessage
-  }
+  void onNewBroadcastMessage(String type, Map<String, dynamic> payload) {}
 
   @override
-  void onScreenShareUpdate(RtkRemoteParticipant participant, bool isEnabled) {
-    // TODO: implement onScreenShareUpdate
-  }
+  void onScreenShareUpdate(RtkRemoteParticipant participant, bool isEnabled) {}
 }

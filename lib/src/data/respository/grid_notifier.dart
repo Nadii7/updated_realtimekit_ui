@@ -54,12 +54,8 @@ class GridNotifier extends Notifier<GridPagesInfo>
   void onVideoUpdate(RtkRemoteParticipant participant, bool isEnabled) {}
 
   @override
-  void onNewBroadcastMessage(String type, Map<String, dynamic> payload) {
-    // TODO: implement onNewBroadcastMessage
-  }
+  void onNewBroadcastMessage(String type, Map<String, dynamic> payload) {}
 
   @override
-  void onScreenShareUpdate(RtkRemoteParticipant participant, bool isEnabled) {
-    // TODO: implement onScreenShareUpdate
-  }
+  void onScreenShareUpdate(RtkRemoteParticipant participant, bool isEnabled) {}
 }

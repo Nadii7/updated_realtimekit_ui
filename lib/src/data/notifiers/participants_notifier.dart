@@ -83,15 +83,11 @@ class ParticipantsNotifier extends StreamNotifier<ParticipantsState>
   }
 
   @override
-  void onNewStageAccessRequest(RtkRemoteParticipant participant) {
-    // TODO: implement onNewStageAccessRequest
-  }
+  void onNewStageAccessRequest(RtkRemoteParticipant participant) {}
 
   @override
   void onPeerStageStatusUpdated(RtkRemoteParticipant participant,
-      StageStatus oldStatus, StageStatus newStatus) {
-    // TODO: implement onPeerStageStatusUpdated
-  }
+      StageStatus oldStatus, StageStatus newStatus) {}
 
   @override
   void onRemovedFromStage() {
@@ -104,14 +100,11 @@ class ParticipantsNotifier extends StreamNotifier<ParticipantsState>
   }
 
   @override
-  void onStageAccessRequestRejected() {
-    // TODO: implement onStageAccessRequestRejected
-  }
+  void onStageAccessRequestRejected() {}
 
   @override
-  void onStageAccessRequestsUpdated(List<RtkRemoteParticipant> accessRequests) {
-    // TODO: implement onStageAccessRequestsUpdated
-  }
+  void onStageAccessRequestsUpdated(
+      List<RtkRemoteParticipant> accessRequests) {}
 
   @override
   void onStageStatusUpdated(StageStatus oldStatus, StageStatus newStatus) {

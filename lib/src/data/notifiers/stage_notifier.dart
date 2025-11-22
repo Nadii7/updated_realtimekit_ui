@@ -18,30 +18,21 @@ class StageStatusNotifier extends Notifier<StageStatus>
   }
 
   @override
-  void onNewStageAccessRequest(RtkRemoteParticipant participant) {
-    // TODO: implement onNewStageAccessRequest
-  }
+  void onNewStageAccessRequest(RtkRemoteParticipant participant) {}
 
   @override
   void onPeerStageStatusUpdated(RtkRemoteParticipant participant,
-      StageStatus oldStatus, StageStatus newStatus) {
-    // TODO: implement onPeerStageStatusUpdated
-  }
+      StageStatus oldStatus, StageStatus newStatus) {}
 
   @override
-  void onStageAccessRequestAccepted() {
-    // TODO: implement onStageAccessRequestAccepted
-  }
+  void onStageAccessRequestAccepted() {}
 
   @override
-  void onStageAccessRequestRejected() {
-    // TODO: implement onStageAccessRequestRejected
-  }
+  void onStageAccessRequestRejected() {}
 
   @override
-  void onStageAccessRequestsUpdated(List<RtkRemoteParticipant> accessRequests) {
-    // TODO: implement onStageAccessRequestsUpdated
-  }
+  void onStageAccessRequestsUpdated(
+      List<RtkRemoteParticipant> accessRequests) {}
 }
 
 class StageRequestsNotifier extends Notifier<List<RtkRemoteParticipant>>
@@ -69,24 +60,17 @@ class StageRequestsNotifier extends Notifier<List<RtkRemoteParticipant>>
   }
 
   @override
-  void onStageAccessRequestAccepted() {
-    // TODO: implement onStageAccessRequestAccepted
-  }
+  void onStageAccessRequestAccepted() {}
 
   @override
-  void onStageAccessRequestRejected() {
-    // TODO: implement onStageAccessRequestRejected
-  }
+  void onStageAccessRequestRejected() {}
 
   @override
-  void onStageAccessRequestsUpdated(List<RtkRemoteParticipant> accessRequests) {
-    // TODO: implement onStageAccessRequestsUpdated
-  }
+  void onStageAccessRequestsUpdated(
+      List<RtkRemoteParticipant> accessRequests) {}
 
   @override
-  void onStageStatusUpdated(StageStatus oldStatus, StageStatus newStatus) {
-    // TODO: implement onStageStatusUpdated
-  }
+  void onStageStatusUpdated(StageStatus oldStatus, StageStatus newStatus) {}
 }
 
 class UnreadStageRequestsCountNotifier extends Notifier<int>
@@ -101,25 +85,17 @@ class UnreadStageRequestsCountNotifier extends Notifier<int>
   }
 
   @override
-  void onNewStageAccessRequest(RtkRemoteParticipant participant) {
-    // TODO: implement onNewStageAccessRequest
-  }
+  void onNewStageAccessRequest(RtkRemoteParticipant participant) {}
 
   @override
   void onPeerStageStatusUpdated(RtkRemoteParticipant participant,
-      StageStatus oldStatus, StageStatus newStatus) {
-    // TODO: implement onPeerStageStatusUpdated
-  }
+      StageStatus oldStatus, StageStatus newStatus) {}
 
   @override
-  void onStageAccessRequestAccepted() {
-    // TODO: implement onStageAccessRequestAccepted
-  }
+  void onStageAccessRequestAccepted() {}
 
   @override
-  void onStageAccessRequestRejected() {
-    // TODO: implement onStageAccessRequestRejected
-  }
+  void onStageAccessRequestRejected() {}
 
   @override
   void onStageAccessRequestsUpdated(List<RtkRemoteParticipant> accessRequests) {
@@ -127,12 +103,8 @@ class UnreadStageRequestsCountNotifier extends Notifier<int>
   }
 
   @override
-  void onRemovedFromStage() {
-    // TODO: implement onRemovedFromStage
-  }
+  void onRemovedFromStage() {}
 
   @override
-  void onStageStatusUpdated(StageStatus oldStatus, StageStatus newStatus) {
-    // TODO: implement onStageStatusUpdated
-  }
+  void onStageStatusUpdated(StageStatus oldStatus, StageStatus newStatus) {}
 }
