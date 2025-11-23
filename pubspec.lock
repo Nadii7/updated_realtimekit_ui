@@ -280,10 +280,11 @@ packages:
   realtimekit_core:
     dependency: "direct main"
     description:
-      name: realtimekit_core
-      sha256: "47258635560693d3f3f1a5a3c61925ff7541492b59a31b2d13a1440b823e178e"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: main
+      resolved-ref: "62326df17ef4dfadfa894e1197d1dca8786bcd8a"
+      url: "https://github.com/Nadii7/updated_realtimekit_core.git"
+    source: git
     version: "0.1.3"
   realtimekit_core_android:
     dependency: transitive
@@ -296,10 +297,11 @@ packages:
   realtimekit_core_ios:
     dependency: transitive
     description:
-      name: realtimekit_core_ios
-      sha256: "3b2d5214d6020542057a4bc653a7dc03a28c6a9c19157e3583b2aa3d535ae69e"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: main
+      resolved-ref: aa0b47b0432780b40eb85d146587fa9807ff26de
+      url: "https://github.com/Nadii7/updated-realtimekit_core_ios.git"
+    source: git
     version: "0.1.3"
   realtimekit_core_platform_interface:
     dependency: transitive
