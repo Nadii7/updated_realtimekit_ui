@@ -22,7 +22,7 @@ dependencies:
   realtimekit_core:
     git:
       url: https://github.com/Nadii7/updated_realtimekit_core.git
-      ref: v1
+      ref: v2
 
 dev_dependencies:
   flutter_test:

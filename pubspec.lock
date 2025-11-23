@@ -281,8 +281,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: v1
-      resolved-ref: a4b3b4b4b1850c5b4dc7b27211045e69df6c5873
+      ref: v2
+      resolved-ref: "20680d31eedc9f9910bf2bb645e120660cc0f35b"
       url: "https://github.com/Nadii7/updated_realtimekit_core.git"
     source: git
     version: "0.1.3"
