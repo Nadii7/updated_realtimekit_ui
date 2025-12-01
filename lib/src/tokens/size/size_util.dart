@@ -17,19 +17,18 @@ const meetingRoomHeight = _designHeight - appbarHeight - bottomNavbarHeight;
 extension SizeUtil on BuildContext {
   Size get screen => MediaQuery.of(this).size;
 
-  /// Width responsive to design
-  double get rw => screen.shortestSide / _designWidth;
+  // Raw scale based on width
+  double get _rawScale => screen.shortestSide / _designWidth;
 
-  /// Height responsive to design
-  double get rh => screen.height / _designHeight;
+  // Safe scale (max 1.3) to prevent huge buttons on tablets
+  double get scale => _rawScale.clamp(0.8, 1.3);
 
-  /// A safe scale factor (best for padding, font, small UI elements)
-  double get scale => rw; // you can use min(rw, rh) if you prefer
+  // For widths (allowed to stretch more)
+  double w(double value) => value * _rawScale;
 
-  /// Scale any value safely
+  // For fixed UI sizes
   double adjust(double value) => value * scale;
 
-  /// Direct screen width/height
   double get width => screen.width;
   double get height => screen.height;
 }

@@ -12,36 +12,42 @@ class EmptyChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme(globalDesignToken.colorToken).theme;
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: context.adjust(160),
-            width: context.adjust(277),
-            child: Stack(
-              children: [
-                Positioned(
-                  left: context.adjust(30),
-                  child: const NoChatsBaseWidget(),
+    return ListView(
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height - (kToolbarHeight * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: context.adjust(160),
+                width: context.adjust(277),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: context.adjust(30),
+                      child: const NoChatsBaseWidget(),
+                    ),
+                    const NoChatsOverlayWidget()
+                  ],
                 ),
-                const NoChatsOverlayWidget()
-              ],
-            ),
+              ),
+              RtkText(
+                RtkStrings.noMessages,
+                rtkTextStyle: theme.textTheme.headlineSmall,
+              ),
+              RtkText(
+                RtkStrings.chatMessagesWillAppearHere,
+                rtkTextStyle: theme.textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
           ),
-          RtkText(
-            RtkStrings.noMessages,
-            rtkTextStyle: theme.textTheme.headlineSmall,
-          ),
-          RtkText(
-            RtkStrings.chatMessagesWillAppearHere,
-            rtkTextStyle: theme.textTheme.bodyLarge!.copyWith(
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
