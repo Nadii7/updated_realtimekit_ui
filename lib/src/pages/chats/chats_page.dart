@@ -16,8 +16,7 @@ class ChatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final chatPermissions = rtkMeeting.permissions.chat;
     return Scaffold(
-      body: const ChatListWidget(),
-      backgroundColor: globalDesignToken.colorToken.backgroundColor.shade1000,
+      body: const SafeArea(child: ChatListWidget()),
       bottomNavigationBar:
           chatPermissions.canSendFiles || chatPermissions.canSendText
               ? const InputBarWidget()
@@ -27,7 +26,6 @@ class ChatsPage extends StatelessWidget {
         title: RtkText(RtkStrings.chat),
         leadingIcon: const Icon(DyteIcons.dismiss),
         onPressed: () => RtkRouter.of(context).pop(),
-        backgroundColor: globalDesignToken.colorToken.backgroundColor.shade1000,
       ),
     );
   }

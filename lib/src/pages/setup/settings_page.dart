@@ -13,6 +13,8 @@ import 'package:realtimekit_ui/src/widgets/atoms/rtk_app_bar.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/audio_devices_loader.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/video_devices_loader.dart';
 
+import '../../routes/router.dart';
+
 class SetupSettingsPage extends ConsumerWidget {
   final String remainingTime;
 
@@ -28,14 +30,9 @@ class SetupSettingsPage extends ConsumerWidget {
     return Scaffold(
       appBar: RtkAppBar(
         remainingTime: remainingTime,
-        hasLeading: false,
-        actions: [
-          IconButton(
-            onPressed: Navigator.of(context).pop,
-            icon: const Icon(DyteIcons.dismiss),
-          )
-        ],
         title: RtkText(RtkStrings.settings),
+        leadingIcon: const Icon(DyteIcons.dismiss),
+        onPressed: () => RtkRouter.of(context).pop(),
       ),
       body: SafeArea(
         child: Center(
