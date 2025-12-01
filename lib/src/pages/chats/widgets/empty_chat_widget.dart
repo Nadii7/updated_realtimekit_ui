@@ -67,7 +67,7 @@ class NoChatsBaseWidget extends StatelessWidget {
         height: context.adjust(76.84),
         width: context.adjust(248.18),
         decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
+          color: theme.colorScheme.tertiaryContainer,
           borderRadius: BorderRadius.circular(
             context.adjust(6.15),
           ),
@@ -78,7 +78,7 @@ class NoChatsBaseWidget extends StatelessWidget {
             RtkShimmerWidget(
               height: context.adjust(10.76),
               width: context.adjust(73.76),
-              color: theme.colorScheme.tertiaryContainer,
+              color: theme.colorScheme.primaryContainer,
             ),
             SizedBox(height: context.adjust(16)),
             Row(
@@ -90,7 +90,7 @@ class NoChatsBaseWidget extends StatelessWidget {
                 RtkShimmerWidget(
                   width: context.adjust(73.76),
                   height: context.adjust(9.22),
-                  color: theme.colorScheme.tertiaryContainer,
+                  color: theme.colorScheme.primaryContainer,
                 ),
                 SizedBox(
                   width: context.adjust(116.79),
@@ -124,7 +124,7 @@ class NoChatsOverlayWidget extends StatelessWidget {
         height: context.adjust(76.84),
         width: context.adjust(248.18),
         decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
+          color: theme.colorScheme.tertiaryContainer,
           borderRadius: BorderRadius.circular(
             context.adjust(6.15),
           ),
@@ -135,7 +135,7 @@ class NoChatsOverlayWidget extends StatelessWidget {
             RtkShimmerWidget(
               height: context.adjust(10.76),
               width: context.adjust(73.76),
-              color: theme.colorScheme.tertiaryContainer,
+              color: theme.colorScheme.primaryContainer,
             ),
             SizedBox(height: context.adjust(16)),
             RtkShimmerWidget(
