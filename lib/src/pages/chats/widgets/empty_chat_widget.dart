@@ -74,6 +74,7 @@ class NoChatsBaseWidget extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RtkShimmerWidget(
               height: context.adjust(10.76),
@@ -131,6 +132,7 @@ class NoChatsOverlayWidget extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RtkShimmerWidget(
               height: context.adjust(10.76),
