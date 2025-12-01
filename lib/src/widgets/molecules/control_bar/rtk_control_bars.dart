@@ -113,7 +113,7 @@ class _RtkGCControlBarState extends ConsumerState<_RtkGCControlBar> {
             meeting: rtkMeeting,
           ),
           MoreButtonWidget(remainingTime: widget.remainingTime),
-          RtkLeaveButton(meeting: rtkMeeting),
+          RtkLeaveButton(onClose: widget.onClose, meeting: rtkMeeting),
         ],
       ),
     );

@@ -24,7 +24,7 @@ class RecorderWidget extends ConsumerWidget {
     final recWid = Padding(
       padding: ref.read(localUserSettingsProvider.notifier).isVideoEnabled
           ? EdgeInsets.zero
-          : EdgeInsets.only(right: hspace4.width!),
+          : EdgeInsetsDirectional.only(end: hspace4.width!),
       child: Row(
         children: [
           if (recordingState == RecordingState.recording) ...[

@@ -90,6 +90,7 @@ class _RtkParticipantsPageState extends ConsumerState<RtkParticipantsPage> {
       body: SafeArea(
         child: SizedBox(
           height: context.height,
+          width: MediaQuery.sizeOf(context).width,
           child: Consumer(
             builder: (context, ref, child) {
               final participantsAsync = ref.watch(participantsProvider);

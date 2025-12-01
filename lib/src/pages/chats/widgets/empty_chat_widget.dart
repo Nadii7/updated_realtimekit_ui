@@ -12,33 +12,36 @@ class EmptyChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme(globalDesignToken.colorToken).theme;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: context.adjust(160),
-          width: context.adjust(277),
-          child: Stack(
-            children: [
-              Positioned(
-                left: context.adjust(30),
-                child: const NoChatsBaseWidget(),
-              ),
-              const NoChatsOverlayWidget()
-            ],
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: context.adjust(160),
+            width: context.adjust(277),
+            child: Stack(
+              children: [
+                Positioned(
+                  left: context.adjust(30),
+                  child: const NoChatsBaseWidget(),
+                ),
+                const NoChatsOverlayWidget()
+              ],
+            ),
           ),
-        ),
-        RtkText(
-          RtkStrings.noMessages,
-          rtkTextStyle: theme.textTheme.headlineSmall,
-        ),
-        RtkText(
-          RtkStrings.chatMessagesWillAppearHere,
-          rtkTextStyle: theme.textTheme.bodyLarge!.copyWith(
-            fontWeight: FontWeight.w400,
+          RtkText(
+            RtkStrings.noMessages,
+            rtkTextStyle: theme.textTheme.headlineSmall,
           ),
-        ),
-      ],
+          RtkText(
+            RtkStrings.chatMessagesWillAppearHere,
+            rtkTextStyle: theme.textTheme.bodyLarge!.copyWith(
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

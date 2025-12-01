@@ -15,12 +15,14 @@ class RtkLeaveButton extends StatefulWidget with UiKitElement {
     super.key,
     this.height,
     this.width,
+    this.onClose,
   }) : designToken = individualDesignToken ?? globalDesignToken;
 
   final RtkDesignTokens designToken;
   final RealtimekitClient meeting;
   final double? height;
   final double? width;
+  final Function()? onClose;
 
   @override
   State<RtkLeaveButton> createState() => _RtkLeaveButtonState();
@@ -53,7 +55,8 @@ class _RtkLeaveButtonState extends State<RtkLeaveButton> {
         onPressed: () {
           showDialog(
             builder: (context) {
-              return RtkLeaveMeetingDialog(meeting: widget.meeting);
+              return RtkLeaveMeetingDialog(
+                  onClose: widget.onClose, meeting: widget.meeting);
             },
             context: context,
           );

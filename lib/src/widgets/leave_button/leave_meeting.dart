@@ -14,7 +14,9 @@ class RtkLeaveMeetingDialog extends StatelessWidget implements UiKitElement {
     required this.meeting,
     this.designToken,
     super.key,
+    this.onClose,
   });
+  final Function()? onClose;
 
   final RealtimekitClient meeting;
 
@@ -74,6 +76,7 @@ class RtkLeaveMeetingDialog extends StatelessWidget implements UiKitElement {
                     onPressed: () {
                       Navigator.of(context, rootNavigator: true).pop();
                       meeting.leaveRoom();
+                      if (onClose != null) onClose!();
                     },
                   ),
                 ),
