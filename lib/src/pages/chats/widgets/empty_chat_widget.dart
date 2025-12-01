@@ -98,7 +98,7 @@ class NoChatsBaseWidget extends StatelessWidget {
                 RtkShimmerWidget(
                   width: context.adjust(27),
                   height: context.adjust(27),
-                  color: theme.colorScheme.primaryContainer,
+                  color: theme.colorScheme.tertiaryContainer,
                 ),
               ],
             ),
@@ -141,7 +141,7 @@ class NoChatsOverlayWidget extends StatelessWidget {
             RtkShimmerWidget(
               width: context.adjust(212.07),
               height: context.adjust(11.53),
-              color: theme.colorScheme.primaryContainer,
+              color: theme.colorScheme.tertiaryContainer,
             ),
             SizedBox(
               height: context.adjust(4.61),
@@ -149,7 +149,7 @@ class NoChatsOverlayWidget extends StatelessWidget {
             RtkShimmerWidget(
               width: context.adjust(89.13),
               height: context.adjust(10.76),
-              color: theme.colorScheme.primaryContainer,
+              color: theme.colorScheme.tertiaryContainer,
             ),
           ],
         ),
