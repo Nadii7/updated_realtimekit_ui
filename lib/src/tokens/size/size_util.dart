@@ -21,7 +21,7 @@ extension SizeUtil on BuildContext {
   double get _rawScale => screen.shortestSide / _designWidth;
 
   // Safe scale (max 1.3) to prevent huge buttons on tablets
-  double get scale => _rawScale.clamp(0.8, 1.3);
+  double get scale => _rawScale.clamp(0.8, 1.7);
 
   // For widths (allowed to stretch more)
   double w(double value) => value * _rawScale;
