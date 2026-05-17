@@ -150,66 +150,61 @@ class OptionSelectorState extends ConsumerState<OptionSelector> {
       }
     });
 
-    return Column(children: [
-      ...widget.poll.options.map((opt) {
-        return Row(
-          children: [
-            Radio(
-              value: opt,
-              groupValue: widget.votedOption ??
-                  ref.watch(widget.optionSelectorNotifier),
-              activeColor: theme.colorScheme.primary,
-              fillColor: WidgetStateProperty.all(theme.colorScheme.primary),
-              onChanged: widget.votedOption == null
-                  ? (_) {
-                      rtkMeeting.polls.vote(
-                        poll: widget.poll,
-                        pollOption: opt,
-                      );
-                    }
-                  : null,
-            ),
-            Expanded(
-              child: RtkText(
-                opt.text,
-                disableOverflow: true,
-              ),
-            ),
-            // If hideVotes is false, then show the result as the poll is ongoing
-            // or if hideVotes is true, then show the result only when all the participants have voted
-
-            if (( // condition 1: if this client is the creator of the poll -> show `View Votes` button on the go
-                    widget.poll.createdBy == rtkMeeting.localUser.name ||
-                        // if anonymous is false and
+    return RadioGroup<PollOption>(
+      groupValue:
+          widget.votedOption ?? ref.watch(widget.optionSelectorNotifier),
+      onChanged: (value) {
+        if (widget.votedOption == null && value != null) {
+          rtkMeeting.polls.vote(
+            poll: widget.poll,
+            pollOption: value,
+          );
+        }
+      },
+      child: Column(
+        children: [
+          ...widget.poll.options.map((opt) {
+            return Row(
+              children: [
+                Radio<PollOption>(
+                  value: opt,
+                  activeColor: theme.colorScheme.primary,
+                  fillColor: WidgetStateProperty.all(theme.colorScheme.primary),
+                ),
+                Expanded(
+                  child: RtkText(
+                    opt.text,
+                    disableOverflow: true,
+                  ),
+                ),
+                if ((widget.poll.createdBy == rtkMeeting.localUser.name ||
                         (widget.poll.anonymous == false &&
-                            // condition 2: if hideVotes is false -> show `View Votes` button on the go
                             (widget.poll.hideVotes == false ||
-                                // condition 3: if hide votes is true, and all the participants have voted -> show `View Votes` button
                                 (widget.poll.hideVotes &&
                                     _calculateAllVotes(widget.poll) ==
                                         rtkMeeting
                                             .participants.joined.length)))) &&
-                // condition 4: if the option has votes -> show `View Votes` button
-                opt.count > 0)
-              RtkTextButton(
-                onPressed: () => showVotersList(opt),
-                borderColor: theme.colorScheme.primary,
-                variant: Variant.secondary,
-                label: RtkStrings.viewVoters,
-                labelStyle: theme.textTheme.bodySmall,
-              ),
-
-            if (widget.poll.createdBy == rtkMeeting.localUser.name ||
-                widget.poll.hideVotes == false ||
-                (widget.poll.hideVotes &&
-                    _calculateAllVotes(widget.poll) ==
-                        rtkMeeting.participants.joined.length))
-              RtkText(
-                " (${opt.votes.length.toString()})",
-              ),
-          ],
-        );
-      })
-    ]);
+                    opt.count > 0)
+                  RtkTextButton(
+                    onPressed: () => showVotersList(opt),
+                    borderColor: theme.colorScheme.primary,
+                    variant: Variant.secondary,
+                    label: RtkStrings.viewVoters,
+                    labelStyle: theme.textTheme.bodySmall,
+                  ),
+                if (widget.poll.createdBy == rtkMeeting.localUser.name ||
+                    widget.poll.hideVotes == false ||
+                    (widget.poll.hideVotes &&
+                        _calculateAllVotes(widget.poll) ==
+                            rtkMeeting.participants.joined.length))
+                  RtkText(
+                    " (${opt.votes.length.toString()})",
+                  ),
+              ],
+            );
+          }),
+        ],
+      ),
+    );
   }
 }

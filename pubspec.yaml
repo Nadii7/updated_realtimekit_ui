@@ -6,6 +6,7 @@ description: Cloudflare's RealtimeKit UI SDK to integrate video-audio to your ap
 environment:
   sdk: ">=2.19.0 <4.0.0"
   flutter: ">=1.17.0"
+
 dependencies:
   flutter:
     sdk: flutter
@@ -13,9 +14,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  get_it: ^9.1.0
+  get_it: ^9.2.1
   dyte_icons: 0.0.3
-  file_picker: ^10.3.8
+  file_picker: ^11.0.2
   flutter_riverpod: ^2.6.1
   realtimekit_core: ^0.1.6
 
@@ -24,7 +25,7 @@ dev_dependencies:
     sdk: flutter
   
   melos: ^7.0.0
-  flutter_lints: ^2.0.0
+  flutter_lints: ^6.0.0
 
 melos:
   useRootAsPackage: true

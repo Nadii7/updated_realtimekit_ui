@@ -39,14 +39,12 @@ class _RtkGridViewWidgetState extends State<RtkGridViewWidget> {
       runSpacing: widget.spacing,
       alignment: WrapAlignment.center,
       children: [
-        ...widget.children
-            .map((child) => SizedBox(
-                  width: _allocateWidthForParticipant(
-                      widget.children.indexOf(child) + 1),
-                  height: _allocateHeightForParticipants(),
-                  child: child,
-                ))
-            .toList(),
+        ...widget.children.map((child) => SizedBox(
+              width: _allocateWidthForParticipant(
+                  widget.children.indexOf(child) + 1),
+              height: _allocateHeightForParticipants(),
+              child: child,
+            )),
       ],
     );
   }

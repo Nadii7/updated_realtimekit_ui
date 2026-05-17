@@ -166,11 +166,9 @@ class _CreatePollPageState extends ConsumerState<CreatePollPage> {
                       onPressed: () {
                         final options = [
                           ...mandatoryOptionsController
-                              .map((mandatoryOpt) => mandatoryOpt.text.trim())
-                              .toList(),
+                              .map((mandatoryOpt) => mandatoryOpt.text.trim()),
                           ...moreOptionsController
-                              .map((moreOpt) => moreOpt.text.trim())
-                              .toList(),
+                              .map((moreOpt) => moreOpt.text.trim()),
                         ];
                         if (questionController.text.trim().isEmpty ||
                             options.any((opt) => opt.isEmpty)) {

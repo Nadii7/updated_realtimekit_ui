@@ -1,4 +1,4 @@
-library realtimekit_ui;
+library;
 
 export 'package:realtimekit_core/realtimekit_core.dart';
 

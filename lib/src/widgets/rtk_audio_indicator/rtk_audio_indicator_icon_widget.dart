@@ -9,45 +9,44 @@ import 'package:flutter/material.dart';
 class RtkAudioIndicatorIconWidget extends StatefulWidget {
   final RtkMeetingParticipant participant;
   final double? iconSize;
-  RtkAudioIndicatorIconWidget({
+
+  const RtkAudioIndicatorIconWidget({
     super.key,
     required this.participant,
     this.iconSize,
-  })  : isLocalUser = participant.id == rtkMeeting.localUser.id,
-        localUserAudioNotifier = participant.id == rtkMeeting.localUser.id
-            ? LocalUserAudioNotifier()
-            : null,
-        audioNotifier = participant.id != rtkMeeting.localUser.id
-            ? AudioNotifier(participant)
-            : null {
-    if (isLocalUser) {
-      rtkMeeting.addSelfEventListener(localUserAudioNotifier!);
-    } else {
-      rtkMeeting.addParticipantsEventListener(audioNotifier!);
-    }
-  }
+  });
 
-  final LocalUserAudioNotifier? localUserAudioNotifier;
-  final AudioNotifier? audioNotifier;
-
-  final bool isLocalUser;
+  bool get isLocalUser => participant.id == rtkMeeting.localUser.id;
 
   @override
   State<RtkAudioIndicatorIconWidget> createState() => _AudioIconState();
 }
 
 class _AudioIconState extends State<RtkAudioIndicatorIconWidget> {
+  LocalUserAudioNotifier? _localUserAudioNotifier;
+  AudioNotifier? _audioNotifier;
+  late final bool _isLocalUser;
+
   @override
   void initState() {
     super.initState();
+    _isLocalUser = widget.isLocalUser;
+
+    if (_isLocalUser) {
+      _localUserAudioNotifier = LocalUserAudioNotifier();
+      rtkMeeting.addSelfEventListener(_localUserAudioNotifier!);
+    } else {
+      _audioNotifier = AudioNotifier(widget.participant);
+      rtkMeeting.addParticipantsEventListener(_audioNotifier!);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme(globalDesignToken.colorToken).theme;
-    if (widget.localUserAudioNotifier != null) {
+    if (_isLocalUser) {
       return ValueListenableBuilder(
-        valueListenable: widget.localUserAudioNotifier!,
+        valueListenable: _localUserAudioNotifier!,
         builder: (context, bool audioEnabled, child) {
           return Icon(
             audioEnabled ? DyteIcons.mic_on : DyteIcons.mic_off,
@@ -64,7 +63,7 @@ class _AudioIconState extends State<RtkAudioIndicatorIconWidget> {
       );
     } else {
       return ValueListenableBuilder(
-        valueListenable: widget.audioNotifier!,
+        valueListenable: _audioNotifier!,
         builder: (context, bool audioEnabled, child) {
           return Icon(
             audioEnabled ? DyteIcons.mic_on : DyteIcons.mic_off,
@@ -84,10 +83,11 @@ class _AudioIconState extends State<RtkAudioIndicatorIconWidget> {
 
   @override
   void dispose() {
-    if (widget.localUserAudioNotifier != null) {
-      rtkMeeting.removeSelfEventListener(widget.localUserAudioNotifier!);
-    } else if (widget.audioNotifier != null) {
-      rtkMeeting.removeParticipantsEventListener(widget.audioNotifier!);
+    if (_localUserAudioNotifier != null) {
+      rtkMeeting.removeSelfEventListener(_localUserAudioNotifier!);
+    }
+    if (_audioNotifier != null) {
+      rtkMeeting.removeParticipantsEventListener(_audioNotifier!);
     }
     super.dispose();
   }

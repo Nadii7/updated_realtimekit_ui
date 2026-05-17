@@ -28,7 +28,7 @@ class ChatActionNotifier extends Notifier<void> {
 
   Future<void> pickAndSendFile(BuildContext context) async {
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final result = await FilePicker.pickFiles(
         allowMultiple: false,
         type: FileType.any,
       );
@@ -52,7 +52,7 @@ class ChatActionNotifier extends Notifier<void> {
 
   Future<void> pickAndSendImage(BuildContext context) async {
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final result = await FilePicker.pickFiles(
         allowMultiple: false,
         type: FileType.image,
       );

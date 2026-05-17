@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class RtkRouter {
-  static of(BuildContext context) => _RtkRouter(context);
+  static RtkRouterDelegate of(BuildContext context) =>
+      RtkRouterDelegate(context);
 }
 
-class _RtkRouter {
+class RtkRouterDelegate {
   final BuildContext context;
-  _RtkRouter(this.context);
+  RtkRouterDelegate(this.context);
 
   void pop() => Navigator.pop(context);
 
@@ -20,10 +21,11 @@ class _RtkRouter {
 
   void push(Widget page, {String? pageName}) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => page,
-          settings: pageName != null ? RouteSettings(name: pageName) : null,
-        ));
+      context,
+      MaterialPageRoute(
+        builder: (context) => page,
+        settings: pageName != null ? RouteSettings(name: pageName) : null,
+      ),
+    );
   }
 }

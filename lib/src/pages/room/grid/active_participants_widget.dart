@@ -16,7 +16,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/states/waitlisted_participant_states.dart';
 
 class ActiveParticipantsWidget extends ConsumerStatefulWidget {
-  const ActiveParticipantsWidget({Key? key}) : super(key: key);
+  const ActiveParticipantsWidget({super.key});
 
   @override
   ConsumerState createState() => _ActiveParticipantsGridState();

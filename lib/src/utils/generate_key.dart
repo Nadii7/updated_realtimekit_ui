@@ -1,24 +1,23 @@
 import 'package:realtimekit_ui/realtimekit_ui.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/foundation.dart';
 
-Key generateKeyForParticipant(
+ValueKey<String> generateKeyForParticipant(
   RtkMeetingParticipant participant, {
   String pageName = 'RtkGridView',
 }) {
-  return Key(
-      'RtkParticipant: ${participant.id}${participant.videoEnabled}Page:$pageName');
+  return ValueKey('RtkParticipant:${participant.id}:$pageName');
 }
 
-Key generateAudioKeyForParticipant(
+ValueKey<String> generateAudioKeyForParticipant(
   RtkMeetingParticipant participant, {
   String pageName = 'RtkGridView',
 }) {
-  return Key(
-      'RtkParticipant: ${participant.id}${participant.audioEnabled}Page:$pageName');
+  return ValueKey('RtkParticipantAudio:${participant.id}:$pageName');
 }
 
-Key generateVideoKeyForParticipant(RtkMeetingParticipant participant,
-    {String pageName = 'RtkGridView'}) {
-  return Key(
-      'RtkParticipant: ${participant.id}${participant.videoEnabled}Page:$pageName');
+ValueKey<String> generateVideoKeyForParticipant(
+  RtkMeetingParticipant participant, {
+  String pageName = 'RtkGridView',
+}) {
+  return ValueKey('RtkParticipantVideo:${participant.id}:$pageName');
 }

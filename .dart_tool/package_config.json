@@ -15,7 +15,7 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/async-2.13.0",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/async-2.13.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -75,13 +75,13 @@
     },
     {
       "name": "cross_file",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/cross_file-0.3.5+1",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/cross_file-0.3.5+2",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
     {
       "name": "dbus",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/dbus-0.7.11",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/dbus-0.7.12",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -99,7 +99,7 @@
     },
     {
       "name": "ffi",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/ffi-2.1.4",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/ffi-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -111,7 +111,7 @@
     },
     {
       "name": "file_picker",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/file_picker-10.3.10",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/file_picker-11.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -123,9 +123,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/flutter_lints-6.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_localizations",
@@ -135,9 +135,9 @@
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.31",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.34",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "flutter_riverpod",
@@ -165,7 +165,7 @@
     },
     {
       "name": "get_it",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/get_it-9.1.0",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/get_it-9.2.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -207,9 +207,9 @@
     },
     {
       "name": "json_annotation",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/json_annotation-4.9.0",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/json_annotation-4.12.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.9"
     },
     {
       "name": "leak_tracker",
@@ -231,9 +231,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/lints-2.1.1",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/lints-6.1.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.8"
     },
     {
       "name": "matcher",
@@ -273,7 +273,7 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/petitparser-7.0.1",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/petitparser-7.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -363,7 +363,7 @@
     },
     {
       "name": "source_span",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/source_span-1.10.1",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/source_span-1.10.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
@@ -423,9 +423,9 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/vm_service-15.0.0",
+      "rootUri": "file:///Users/nadii7/.pub-cache/hosted/pub.dev/vm_service-15.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.5"
     },
     {
       "name": "web",

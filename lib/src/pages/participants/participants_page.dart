@@ -14,6 +14,7 @@ import 'package:realtimekit_ui/src/widgets/atoms/rtk_icon_button.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_list_tile.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_text.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_text_button.dart';
+import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
 import 'package:realtimekit_ui/src/widgets/participant_tile/avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,20 +38,30 @@ class RtkParticipantsPage extends ConsumerStatefulWidget {
       _RtkParticipantsPageState();
 }
 
+bool _isWebinarParticipantOnStage(RtkMeetingParticipant participant) {
+  return rtkMeeting.meta.meetingType == RtkMeetingType.webinar &&
+      participant.stageStatus != StageStatus.onStage;
+}
+
 class _RtkParticipantsPageState extends ConsumerState<RtkParticipantsPage> {
+  final isMeetingGroupCall =
+      rtkMeeting.meta.meetingType == RtkMeetingType.groupCall;
   List<Widget> _addPresetHostActions(
       SelfPermissions permissions, RtkMeetingParticipant participant) {
     List<Widget> hostActions = [];
     if (permissions.host.canPinParticipant &&
-        participant.id != rtkMeeting.localUser.id) {
+        participant.id != rtkMeeting.localUser.id &&
+        (!_isWebinarParticipantOnStage(participant) || isMeetingGroupCall)) {
       hostActions.add(PinningToggler(participant: participant));
     }
 
-    if (permissions.host.canMuteVideo) {
+    if (permissions.host.canMuteVideo &&
+        (!_isWebinarParticipantOnStage(participant) || isMeetingGroupCall)) {
       hostActions.add(DisableVideoControllerWidget(participant: participant));
     }
 
-    if (permissions.host.canMuteAudio) {
+    if (permissions.host.canMuteAudio &&
+        (!_isWebinarParticipantOnStage(participant) || isMeetingGroupCall)) {
       hostActions.add(DisableAudioControllerWidget(participant: participant));
     }
 
@@ -58,7 +69,7 @@ class _RtkParticipantsPageState extends ConsumerState<RtkParticipantsPage> {
         participant.id != rtkMeeting.localUser.id) {
       hostActions.add(KickParticipantController(participant: participant));
       if (rtkMeeting.meta.meetingType != RtkMeetingType.groupCall) {
-        hostActions.add(RemoveStageParticipantController(
+        hostActions.add(StageParticipantController(
             participant: participant as RtkRemoteParticipant));
       }
     }
@@ -304,8 +315,10 @@ class _RtkParticipantsPageState extends ConsumerState<RtkParticipantsPage> {
           textAlign: TextAlign.center,
         ),
       ),
-      ...state.viewers.map(
-        (viewer) => RtkListTile(
+      ...state.viewers.map((viewer) {
+        final hostActions =
+            _addPresetHostActions(rtkMeeting.permissions, viewer);
+        return RtkListTile(
           title: RtkText(
             state.localUser.id == viewer.id
                 ? "${viewer.name} (${RtkStrings.you})"
@@ -318,8 +331,28 @@ class _RtkParticipantsPageState extends ConsumerState<RtkParticipantsPage> {
             width: 32,
             textStyle: theme.textTheme.bodyMedium,
           ),
-        ),
-      ),
+          trailing: SizedBox(
+            width: context.width * 0.4,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (hostActions.isNotEmpty)
+                  RtkIconButton(
+                    icon: const Icon(DyteIcons.more_vertical),
+                    backgroundColor: theme.colorScheme.surface,
+                    onPressed: () => showModalBottomSheet(
+                      context: context,
+                      builder: (ctx) => HostOptionsWidget(
+                        participant: viewer,
+                        hostActions: hostActions,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        );
+      }),
     ];
   }
 
@@ -342,9 +375,10 @@ class _RtkParticipantsPageState extends ConsumerState<RtkParticipantsPage> {
       trailing: SizedBox(
         width: context.width * 0.4,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             RtkAudioIndicatorIconWidget(participant: participant),
+            hspace3,
             VideoIcon(participant: participant),
             if (_addPresetHostActions(rtkMeeting.permissions, participant)
                 .isNotEmpty)
@@ -555,21 +589,41 @@ class KickParticipantController extends ConsumerWidget {
   }
 }
 
-class RemoveStageParticipantController extends ConsumerWidget {
+class StageParticipantController extends ConsumerWidget {
   final RtkRemoteParticipant participant;
-  const RemoveStageParticipantController({
+  const StageParticipantController({
     super.key,
     required this.participant,
   });
 
+  String _getStageText() {
+    if (participant.stageStatus == StageStatus.onStage) {
+      return RtkStrings.removeFromStage;
+    } else {
+      return RtkStrings.inviteToStage;
+    }
+  }
+
+  Icon _getStageIcon() {
+    if (participant.stageStatus == StageStatus.onStage) {
+      return const Icon(DyteIcons.leave_stage);
+    } else {
+      return const Icon(DyteIcons.join_stage);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return RtkListTile(
-      leading: const Icon(DyteIcons.leave_stage),
+      leading: _getStageIcon(),
       iconColor: AppTheme(globalDesignToken.colorToken).theme.colorScheme.error,
-      title: RtkText(RtkStrings.removeFromStage),
+      title: RtkText(_getStageText()),
       onTap: () {
-        rtkMeeting.stage.kick([participant.userId]);
+        if (participant.stageStatus != StageStatus.onStage) {
+          rtkMeeting.stage.grantAccess([participant.userId]);
+        } else {
+          rtkMeeting.stage.kick([participant.userId]);
+        }
         RtkRouter.of(context).pop();
       },
     );

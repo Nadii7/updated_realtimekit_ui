@@ -8,12 +8,12 @@ class PageIndicator extends StatelessWidget {
   final double spacing;
 
   const PageIndicator({
-    Key? key,
+    super.key,
     required this.currentPage,
     required this.pageCount,
     this.dotSize = 8.0,
     this.spacing = 8.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

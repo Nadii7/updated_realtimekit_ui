@@ -19,31 +19,16 @@ class RtkParticipantTile extends StatefulWidget with UiKitElement {
   final double height;
   final double width;
   final RtkDesignTokens designToken;
+
   RtkParticipantTile(
     this.participant, {
     RtkDesignTokens? designToken,
     super.key,
     this.height = 240,
     this.width = 180,
-  })  : designToken = designToken ?? globalDesignToken,
-        isSelfView = participant.id == rtkMeeting.localUser.id,
-        localUserVideoNotifier = participant.id == rtkMeeting.localUser.id
-            ? LocalUserVideoNotifier()
-            : null,
-        videoNotifier = participant.id != rtkMeeting.localUser.id
-            ? VideoNotifier(participant)
-            : null {
-    if (isSelfView) {
-      rtkMeeting.addSelfEventListener(localUserVideoNotifier!);
-    } else {
-      rtkMeeting.addParticipantsEventListener(videoNotifier!);
-    }
-  }
+  }) : designToken = designToken ?? globalDesignToken;
 
-  final VideoNotifier? videoNotifier;
-  final LocalUserVideoNotifier? localUserVideoNotifier;
-
-  final bool isSelfView;
+  bool get isSelfView => participant.id == rtkMeeting.localUser.id;
   @override
   State<StatefulWidget> createState() => _PeerViewState();
 
@@ -61,15 +46,33 @@ class RtkParticipantTile extends StatefulWidget with UiKitElement {
 }
 
 class _PeerViewState extends State<RtkParticipantTile> {
+  VideoNotifier? _videoNotifier;
+  LocalUserVideoNotifier? _localUserVideoNotifier;
+  late final bool _isSelfView;
+
+  @override
+  void initState() {
+    super.initState();
+    _isSelfView = widget.isSelfView;
+
+    if (_isSelfView) {
+      _localUserVideoNotifier = LocalUserVideoNotifier();
+      rtkMeeting.addSelfEventListener(_localUserVideoNotifier!);
+    } else {
+      _videoNotifier = VideoNotifier(widget.participant);
+      rtkMeeting.addParticipantsEventListener(_videoNotifier!);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       double size = min(124, constraints.smallest.shortestSide * 0.45);
       return Stack(
         children: [
-          if (widget.localUserVideoNotifier != null)
+          if (_isSelfView)
             ValueListenableBuilder(
-              valueListenable: widget.localUserVideoNotifier!,
+              valueListenable: _localUserVideoNotifier!,
               builder: (context, isVideoEnabled, child) {
                 return SizedBox(
                   child: isVideoEnabled
@@ -94,7 +97,7 @@ class _PeerViewState extends State<RtkParticipantTile> {
             )
           else
             ValueListenableBuilder(
-              valueListenable: widget.videoNotifier!,
+              valueListenable: _videoNotifier!,
               builder: (context, isVideoEnabled, child) {
                 return SizedBox(
                   child: isVideoEnabled
@@ -156,10 +159,11 @@ class _PeerViewState extends State<RtkParticipantTile> {
 
   @override
   void dispose() {
-    if (widget.localUserVideoNotifier != null) {
-      rtkMeeting.removeSelfEventListener(widget.localUserVideoNotifier!);
-    } else {
-      rtkMeeting.removeParticipantsEventListener(widget.videoNotifier!);
+    if (_localUserVideoNotifier != null) {
+      rtkMeeting.removeSelfEventListener(_localUserVideoNotifier!);
+    }
+    if (_videoNotifier != null) {
+      rtkMeeting.removeParticipantsEventListener(_videoNotifier!);
     }
     super.dispose();
   }

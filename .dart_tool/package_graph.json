@@ -23,7 +23,7 @@
     },
     {
       "name": "flutter_lints",
-      "version": "2.0.3",
+      "version": "6.0.0",
       "dependencies": [
         "lints"
       ]
@@ -100,7 +100,7 @@
     },
     {
       "name": "file_picker",
-      "version": "10.3.10",
+      "version": "11.0.2",
       "dependencies": [
         "cross_file",
         "dbus",
@@ -123,7 +123,7 @@
     },
     {
       "name": "get_it",
-      "version": "9.1.0",
+      "version": "9.2.1",
       "dependencies": [
         "async",
         "collection",
@@ -153,7 +153,7 @@
     },
     {
       "name": "lints",
-      "version": "2.1.1",
+      "version": "6.1.0",
       "dependencies": []
     },
     {
@@ -319,7 +319,7 @@
     },
     {
       "name": "async",
-      "version": "2.13.0",
+      "version": "2.13.1",
       "dependencies": [
         "collection",
         "meta"
@@ -448,7 +448,7 @@
     },
     {
       "name": "dbus",
-      "version": "0.7.11",
+      "version": "0.7.12",
       "dependencies": [
         "args",
         "ffi",
@@ -463,7 +463,7 @@
     },
     {
       "name": "cross_file",
-      "version": "0.3.5+1",
+      "version": "0.3.5+2",
       "dependencies": [
         "meta",
         "web"
@@ -478,7 +478,7 @@
     },
     {
       "name": "ffi",
-      "version": "2.1.4",
+      "version": "2.2.0",
       "dependencies": []
     },
     {
@@ -490,7 +490,7 @@
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "version": "2.0.31",
+      "version": "2.0.34",
       "dependencies": [
         "flutter"
       ]
@@ -530,7 +530,7 @@
     },
     {
       "name": "source_span",
-      "version": "1.10.1",
+      "version": "1.10.2",
       "dependencies": [
         "collection",
         "path",
@@ -539,7 +539,7 @@
     },
     {
       "name": "petitparser",
-      "version": "7.0.1",
+      "version": "7.0.2",
       "dependencies": [
         "collection",
         "meta"
@@ -547,7 +547,7 @@
     },
     {
       "name": "json_annotation",
-      "version": "4.9.0",
+      "version": "4.12.0",
       "dependencies": [
         "meta"
       ]
@@ -644,7 +644,7 @@
     },
     {
       "name": "vm_service",
-      "version": "15.0.0",
+      "version": "15.2.0",
       "dependencies": []
     },
     {

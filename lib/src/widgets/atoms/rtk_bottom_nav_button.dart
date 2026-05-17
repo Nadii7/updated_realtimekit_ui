@@ -21,7 +21,7 @@ class RtkBottomNavButton extends StatelessWidget {
   final bool showLabel;
 
   const RtkBottomNavButton({
-    Key? key,
+    super.key,
     required this.icon,
     this.label,
     required this.onTap,
@@ -34,9 +34,8 @@ class RtkBottomNavButton extends StatelessWidget {
     this.disabledIconColor,
     this.showLabel = true,
     this.child,
-  })  : assert((showLabel && label != null) || (!showLabel && label == null),
-            "If showLabel is false, label has to be null and vice versa"),
-        super(key: key);
+  }) : assert((showLabel && label != null) || (!showLabel && label == null),
+            "If showLabel is false, label has to be null and vice versa");
 
   @override
   Widget build(BuildContext context) {

@@ -106,12 +106,12 @@ class RealtimeKitUI extends StatelessWidget {
 
 class RtkProvider extends StatefulWidget {
   const RtkProvider({
-    Key? key,
+    super.key,
     required this.child,
     required this.meeting,
     required this.uiKitInfo,
     this.observers,
-  }) : super(key: key);
+  });
 
   final List<ProviderObserver>? observers;
   final Widget child;

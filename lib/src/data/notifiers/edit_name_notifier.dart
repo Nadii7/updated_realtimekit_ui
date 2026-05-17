@@ -6,7 +6,7 @@ class EditNameNotifier extends Notifier<String> {
 
   String get name => _name.trim();
 
-  onChanged(String editedName) {
+  void onChanged(String editedName) {
     _name = editedName;
     state = _name;
   }

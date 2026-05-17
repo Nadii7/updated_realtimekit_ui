@@ -20,7 +20,7 @@ class RtkTextField extends StatelessWidget {
   final Function(String)? onChanged;
 
   const RtkTextField({
-    Key? key,
+    super.key,
     required this.controller,
     this.prefixText,
     this.hintText,
@@ -35,7 +35,7 @@ class RtkTextField extends StatelessWidget {
     this.width = 40,
     this.height = 80,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

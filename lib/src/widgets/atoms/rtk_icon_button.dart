@@ -22,8 +22,8 @@ class RtkIconButton extends StatelessWidget {
     this.backgroundColor,
     this.padding,
     this.isDisabled = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Icon icon;
   final Color? backgroundColor;
