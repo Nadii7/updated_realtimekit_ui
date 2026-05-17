@@ -5,7 +5,7 @@
   "packages": [
     {
       "name": "realtimekit_ui",
-      "version": "0.1.3",
+      "version": "0.4.0",
       "dependencies": [
         "dyte_icons",
         "file_picker",
@@ -17,7 +17,8 @@
       ],
       "devDependencies": [
         "flutter_lints",
-        "flutter_test"
+        "flutter_test",
+        "melos"
       ]
     },
     {
@@ -28,36 +29,56 @@
       ]
     },
     {
+      "name": "melos",
+      "version": "7.7.0",
+      "dependencies": [
+        "ansi_styles",
+        "args",
+        "async",
+        "cli_launcher",
+        "cli_util",
+        "collection",
+        "conventional_commit",
+        "file",
+        "glob",
+        "graphs",
+        "http",
+        "meta",
+        "mustache_template",
+        "path",
+        "platform",
+        "pool",
+        "prompts",
+        "pub_semver",
+        "pub_updater",
+        "pubspec_parse",
+        "string_scanner",
+        "xml",
+        "yaml",
+        "yaml_edit"
+      ]
+    },
+    {
       "name": "flutter_test",
       "version": "0.0.0",
       "dependencies": [
-        "async",
-        "boolean_selector",
-        "characters",
         "clock",
         "collection",
         "fake_async",
         "flutter",
-        "leak_tracker",
         "leak_tracker_flutter_testing",
-        "leak_tracker_testing",
         "matcher",
-        "material_color_utilities",
         "meta",
         "path",
-        "source_span",
         "stack_trace",
         "stream_channel",
-        "string_scanner",
-        "term_glyph",
         "test_api",
-        "vector_math",
-        "vm_service"
+        "vector_math"
       ]
     },
     {
       "name": "realtimekit_core",
-      "version": "0.1.3",
+      "version": "0.1.6",
       "dependencies": [
         "flutter",
         "pubspec_parse",
@@ -79,7 +100,7 @@
     },
     {
       "name": "file_picker",
-      "version": "10.3.7",
+      "version": "10.3.10",
       "dependencies": [
         "cross_file",
         "dbus",
@@ -113,15 +134,9 @@
       "name": "flutter_localizations",
       "version": "0.0.0",
       "dependencies": [
-        "characters",
-        "clock",
-        "collection",
         "flutter",
         "intl",
-        "material_color_utilities",
-        "meta",
-        "path",
-        "vector_math"
+        "path"
       ]
     },
     {
@@ -142,14 +157,32 @@
       "dependencies": []
     },
     {
-      "name": "vm_service",
-      "version": "15.0.0",
-      "dependencies": []
+      "name": "yaml_edit",
+      "version": "2.2.4",
+      "dependencies": [
+        "collection",
+        "meta",
+        "source_span",
+        "yaml"
+      ]
     },
     {
-      "name": "term_glyph",
-      "version": "1.2.2",
-      "dependencies": []
+      "name": "yaml",
+      "version": "3.1.3",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "xml",
+      "version": "6.6.1",
+      "dependencies": [
+        "collection",
+        "meta",
+        "petitparser"
+      ]
     },
     {
       "name": "string_scanner",
@@ -159,52 +192,109 @@
       ]
     },
     {
-      "name": "stream_channel",
-      "version": "2.1.4",
+      "name": "pubspec_parse",
+      "version": "1.5.0",
       "dependencies": [
-        "async"
-      ]
-    },
-    {
-      "name": "source_span",
-      "version": "1.10.1",
-      "dependencies": [
+        "checked_yaml",
         "collection",
-        "path",
-        "term_glyph"
+        "json_annotation",
+        "pub_semver",
+        "yaml"
       ]
     },
     {
-      "name": "meta",
-      "version": "1.16.0",
-      "dependencies": []
+      "name": "pub_updater",
+      "version": "0.5.0",
+      "dependencies": [
+        "http",
+        "json_annotation",
+        "process",
+        "pub_semver"
+      ]
     },
     {
-      "name": "material_color_utilities",
-      "version": "0.11.1",
+      "name": "pub_semver",
+      "version": "2.2.0",
       "dependencies": [
         "collection"
       ]
     },
     {
-      "name": "leak_tracker_testing",
-      "version": "3.0.1",
+      "name": "prompts",
+      "version": "2.0.0",
       "dependencies": [
-        "leak_tracker",
-        "matcher",
-        "meta"
+        "charcode",
+        "io"
       ]
     },
     {
-      "name": "leak_tracker",
-      "version": "10.0.9",
+      "name": "pool",
+      "version": "1.5.2",
       "dependencies": [
-        "clock",
-        "collection",
-        "meta",
-        "path",
-        "vm_service"
+        "async",
+        "stack_trace"
       ]
+    },
+    {
+      "name": "platform",
+      "version": "3.1.6",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    },
+    {
+      "name": "mustache_template",
+      "version": "2.0.4",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
+    },
+    {
+      "name": "http",
+      "version": "1.6.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "graphs",
+      "version": "2.3.2",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "glob",
+      "version": "2.1.3",
+      "dependencies": [
+        "async",
+        "collection",
+        "file",
+        "path",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "file",
+      "version": "7.0.1",
+      "dependencies": [
+        "meta",
+        "path"
+      ]
+    },
+    {
+      "name": "conventional_commit",
+      "version": "0.6.1+1",
+      "dependencies": []
     },
     {
       "name": "collection",
@@ -212,16 +302,19 @@
       "dependencies": []
     },
     {
-      "name": "characters",
-      "version": "1.4.0",
-      "dependencies": []
+      "name": "cli_util",
+      "version": "0.4.2",
+      "dependencies": [
+        "meta",
+        "path"
+      ]
     },
     {
-      "name": "boolean_selector",
-      "version": "2.1.2",
+      "name": "cli_launcher",
+      "version": "0.3.3+1",
       "dependencies": [
-        "source_span",
-        "string_scanner"
+        "path",
+        "yaml"
       ]
     },
     {
@@ -233,8 +326,25 @@
       ]
     },
     {
+      "name": "args",
+      "version": "2.7.0",
+      "dependencies": []
+    },
+    {
+      "name": "ansi_styles",
+      "version": "0.3.2+1",
+      "dependencies": []
+    },
+    {
+      "name": "stream_channel",
+      "version": "2.1.4",
+      "dependencies": [
+        "async"
+      ]
+    },
+    {
       "name": "leak_tracker_flutter_testing",
-      "version": "3.0.9",
+      "version": "3.0.10",
       "dependencies": [
         "flutter",
         "leak_tracker",
@@ -245,7 +355,7 @@
     },
     {
       "name": "vector_math",
-      "version": "2.1.4",
+      "version": "2.2.0",
       "dependencies": []
     },
     {
@@ -269,13 +379,8 @@
       ]
     },
     {
-      "name": "path",
-      "version": "1.9.1",
-      "dependencies": []
-    },
-    {
       "name": "matcher",
-      "version": "0.12.17",
+      "version": "0.12.19",
       "dependencies": [
         "async",
         "meta",
@@ -286,7 +391,7 @@
     },
     {
       "name": "test_api",
-      "version": "0.7.4",
+      "version": "0.7.10",
       "dependencies": [
         "async",
         "boolean_selector",
@@ -300,19 +405,8 @@
       ]
     },
     {
-      "name": "pubspec_parse",
-      "version": "1.5.0",
-      "dependencies": [
-        "checked_yaml",
-        "collection",
-        "json_annotation",
-        "pub_semver",
-        "yaml"
-      ]
-    },
-    {
       "name": "realtimekit_core_platform_interface",
-      "version": "0.1.3",
+      "version": "0.1.6",
       "dependencies": [
         "flutter",
         "focus_detector_v2",
@@ -321,7 +415,7 @@
     },
     {
       "name": "realtimekit_core_ios",
-      "version": "0.1.3",
+      "version": "0.1.6",
       "dependencies": [
         "flutter",
         "realtimekit_core_platform_interface"
@@ -329,7 +423,7 @@
     },
     {
       "name": "realtimekit_core_android",
-      "version": "0.1.3",
+      "version": "0.1.6",
       "dependencies": [
         "flutter",
         "realtimekit_core_platform_interface"
@@ -405,12 +499,7 @@
       "name": "flutter_web_plugins",
       "version": "0.0.0",
       "dependencies": [
-        "characters",
-        "collection",
-        "flutter",
-        "material_color_utilities",
-        "meta",
-        "vector_math"
+        "flutter"
       ]
     },
     {
@@ -428,19 +517,32 @@
       "dependencies": []
     },
     {
-      "name": "yaml",
-      "version": "3.1.3",
+      "name": "material_color_utilities",
+      "version": "0.13.0",
       "dependencies": [
-        "collection",
-        "source_span",
-        "string_scanner"
+        "collection"
       ]
     },
     {
-      "name": "pub_semver",
-      "version": "2.2.0",
+      "name": "characters",
+      "version": "1.4.1",
+      "dependencies": []
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.1",
       "dependencies": [
-        "collection"
+        "collection",
+        "path",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "petitparser",
+      "version": "7.0.1",
+      "dependencies": [
+        "collection",
+        "meta"
       ]
     },
     {
@@ -460,6 +562,72 @@
       ]
     },
     {
+      "name": "process",
+      "version": "5.0.5",
+      "dependencies": [
+        "file",
+        "path",
+        "platform"
+      ]
+    },
+    {
+      "name": "io",
+      "version": "1.0.5",
+      "dependencies": [
+        "meta",
+        "path",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "charcode",
+      "version": "1.4.0",
+      "dependencies": []
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "leak_tracker_testing",
+      "version": "3.0.2",
+      "dependencies": [
+        "leak_tracker",
+        "matcher",
+        "meta"
+      ]
+    },
+    {
+      "name": "leak_tracker",
+      "version": "11.0.2",
+      "dependencies": [
+        "clock",
+        "collection",
+        "meta",
+        "path",
+        "vm_service"
+      ]
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "dependencies": []
+    },
+    {
+      "name": "boolean_selector",
+      "version": "2.1.2",
+      "dependencies": [
+        "source_span",
+        "string_scanner"
+      ]
+    },
+    {
       "name": "focus_detector_v2",
       "version": "3.1.0+1",
       "dependencies": [
@@ -468,17 +636,15 @@
       ]
     },
     {
-      "name": "xml",
-      "version": "6.6.1",
+      "name": "typed_data",
+      "version": "1.4.0",
       "dependencies": [
-        "collection",
-        "meta",
-        "petitparser"
+        "collection"
       ]
     },
     {
-      "name": "args",
-      "version": "2.7.0",
+      "name": "vm_service",
+      "version": "15.0.0",
       "dependencies": []
     },
     {
@@ -486,14 +652,6 @@
       "version": "0.4.0+2",
       "dependencies": [
         "flutter"
-      ]
-    },
-    {
-      "name": "petitparser",
-      "version": "7.0.1",
-      "dependencies": [
-        "collection",
-        "meta"
       ]
     }
   ],

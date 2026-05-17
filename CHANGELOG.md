@@ -1,5 +1,12 @@
 # RealtimeKit UI
 
+## 0.4.0
+- fix: use common CI components and scripts [RTK-7867]
+
+## 0.1.4
+- fix: added menu for accessing meeting controls for webinar hosts
+- fix: bump get_it version
+
 ## 0.1.3
 
 - fix: directly use videoDevice#toString for names

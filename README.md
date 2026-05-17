@@ -1,6 +1,11 @@
-# RealtimeKit UI for Flutter Mobile
+<p align="center">
+  <a href="https://www.cloudflare.com/">
+    <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/6EYsdkdfBcHtgPmgp3YtkD/0b203affd2053988264b9253b13de6b3/logo-thumbnail.png" alt="Cloudflare" width="200" />
+  </a>
+  <h2 align="center">RealtimeKit UI Kit for Flutter</h2>
+</p>
 
-An easy-to-integrate Flutter package for all your audio-video call, and does all the heavylifting using state-of-the-art Cloudflare's RealtimeKit and infrastructure.
+An easy-to-integrate Flutter package for all your audio-video call needs, powered by Cloudflare's RealtimeKit infrastructure.
 
 A following example showcases some of the screens you get with this package:
 
@@ -143,8 +148,8 @@ To launch the meeting UI all you need to do is call the `loadUI()` method of the
 
 ### Conclusion
 
-To know more about the customization you can do with `realtimekit_ui`, head over to our [Flutter docs](`https://docs.realtime.cloudflare.com/flutter).
+To know more about the customization you can do with `realtimekit_ui`, head over to our [Flutter docs](https://docs.realtime.cloudflare.com/flutter).
 
 ### Sample app
 
-You can clone our [sample app](https://github.com/dyte-io/mobile-samples/tree/main/flutter_uikit) to get more idea about the implementation of `realtimekit_ui` in Flutter application.
+Check the [example app](example/) included in this repository for a complete implementation of `realtimekit_ui` in a Flutter application.
