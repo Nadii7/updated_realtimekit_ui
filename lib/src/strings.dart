@@ -1,5 +1,6 @@
-import 'localization/arb_to_map.dart';
 import 'package:realtimekit_ui/src/localization/app_local.dart';
+
+import 'localization/arb_to_map.dart';
 
 class RtkStrings {
   final String? arbPath;
@@ -36,6 +37,7 @@ class RtkStrings {
   static String get pin => _localizations.pin;
   static String get kick => _localizations.kick;
   static String get removeFromStage => _localizations.removeFromStage;
+  static String get inviteToStage => _localizations.inviteToStage;
   static String get screenShare => _localizations.screenShare;
   static String get plugins => _localizations.plugins;
   static String get createPoll => _localizations.createPoll;

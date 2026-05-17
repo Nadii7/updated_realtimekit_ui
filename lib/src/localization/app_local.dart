@@ -64,6 +64,9 @@ class RtkLocalization {
   String get removeFromStage =>
       _getLocalString("removeFromStage") ?? 'Remove from stage';
 
+  String get inviteToStage =>
+      _getLocalString("inviteToStage") ?? 'Invite to stage';
+
   String get screenShare => _getLocalString("screenShare") ?? 'Screen Share';
 
   String get plugins => _getLocalString("plugins") ?? 'Plugins';
