@@ -18,7 +18,7 @@ dependencies:
   dyte_icons: 0.0.3
   file_picker: ^11.0.2
   flutter_riverpod: ^2.6.1
-  realtimekit_core: ^0.1.4
+  realtimekit_core: ^0.1.6
 
 dev_dependencies:
   flutter_test:
