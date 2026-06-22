@@ -414,7 +414,7 @@
       ]
     },
     {
-      "name": "realtimekit_core_android",
+      "name": "realtimekit_core_ios",
       "version": "0.1.6",
       "dependencies": [
         "flutter",
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "name": "realtimekit_core_ios",
+      "name": "realtimekit_core_android",
       "version": "0.1.6",
       "dependencies": [
         "flutter",
