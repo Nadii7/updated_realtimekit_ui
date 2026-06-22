@@ -425,8 +425,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "fluency/0.1.6/v3"
-      resolved-ref: "748fc2509ade8530c0be5cc5d4ca9ee9dcb6a078"
+      ref: "fluency/0.1.6/v4"
+      resolved-ref: ee3a4b2dbb10fcb4fed800a83f39aa45117b9ad0
       url: "https://github.com/Nadii7/updated_realtimekit_core.git"
     source: git
     version: "0.1.6"
@@ -434,11 +434,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: main
-      resolved-ref: eede95f0830573bbcaf262426d21d895d1546daa
+      ref: "fluency/v1"
+      resolved-ref: aae181e9606fd1ad0cbcade8781162856c32922d
       url: "https://github.com/Nadii7/updated_realtimekit_core_android.git"
     source: git
-    version: "0.1.4"
+    version: "0.1.6"
   realtimekit_core_ios:
     dependency: transitive
     description:
