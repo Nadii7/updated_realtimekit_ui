@@ -1,7 +1,4 @@
-import '../routes/router.dart';
 import 'package:flutter/material.dart';
-import 'package:dyte_icons/dyte_icons.dart';
-import '../widgets/atoms/rtk_icon_button.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/strings.dart';
 import 'package:realtimekit_ui/realtimekit_ui.dart';
@@ -83,23 +80,15 @@ class _RtkAppState extends ConsumerState<RtkApp> {
 }
 
 class LoadingScreen extends ConsumerWidget {
-  final bool hasBack;
-  const LoadingScreen({super.key, this.hasBack = false});
-  static final _theme = AppTheme(globalDesignToken.colorToken).theme;
+  const LoadingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: hasBack
-          ? AppBar(
-              scrolledUnderElevation: 0.0,
-              leading: RtkIconButton(
-                icon: const Icon(DyteIcons.dismiss),
-                onPressed: () => RtkRouter.of(context).pop(),
-                backgroundColor: _theme.colorScheme.primaryContainer,
-              ),
-            )
-          : null,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: const [RtkReleaseResourcesButton()],
+      ),
       body: Center(child: CircularProgressIndicator()),
     );
   }
