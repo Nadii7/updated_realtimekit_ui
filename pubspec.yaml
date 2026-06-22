@@ -1,4 +1,5 @@
 version: 0.4.0
+publish_to: none
 name: realtimekit_ui
 homepage: https://docs.realtime.cloudflare.com/
 description: Cloudflare's RealtimeKit UI SDK to integrate video-audio to your app
@@ -18,7 +19,10 @@ dependencies:
   dyte_icons: 0.0.3
   file_picker: ^11.0.2
   flutter_riverpod: ^2.6.1
-  realtimekit_core: ^0.1.6
+  realtimekit_core:
+    git:
+      ref: fluency/0.1.6/v1
+      url: https://github.com/Nadii7/updated_realtimekit_core.git
 
 dev_dependencies:
   flutter_test:

@@ -424,10 +424,11 @@ packages:
   realtimekit_core:
     dependency: "direct main"
     description:
-      name: realtimekit_core
-      sha256: "9de2bdf09aed6ebb4a774c2c89e6f09c98899325a20bd6fa012fd2c3df4b14eb"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "fluency/0.1.6/v1"
+      resolved-ref: f3a648c956f7eab915ad67660193816c7ae59571
+      url: "https://github.com/Nadii7/updated_realtimekit_core.git"
+    source: git
     version: "0.1.6"
   realtimekit_core_android:
     dependency: transitive
