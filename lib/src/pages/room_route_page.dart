@@ -43,7 +43,7 @@ class _RoomRoutePageState extends ConsumerState<RoomRoutePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const LoadingScreen(),
+              builder: (context) => const LoadingScreen(hasBack: true),
             ),
           );
           break;

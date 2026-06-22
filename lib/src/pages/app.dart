@@ -83,21 +83,23 @@ class _RtkAppState extends ConsumerState<RtkApp> {
 }
 
 class LoadingScreen extends ConsumerWidget {
-  const LoadingScreen({super.key});
+  final bool hasBack;
+  const LoadingScreen({super.key, this.hasBack = false});
   static final _theme = AppTheme(globalDesignToken.colorToken).theme;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0.0,
-        backgroundColor: _theme.colorScheme.primaryContainer,
-        leading: RtkIconButton(
-          icon: const Icon(DyteIcons.dismiss),
-          onPressed: () => RtkRouter.of(context).pop(),
-          backgroundColor: _theme.colorScheme.primaryContainer,
-        ),
-      ),
+      appBar: hasBack
+          ? AppBar(
+              scrolledUnderElevation: 0.0,
+              leading: RtkIconButton(
+                icon: const Icon(DyteIcons.dismiss),
+                onPressed: () => RtkRouter.of(context).pop(),
+                backgroundColor: _theme.colorScheme.primaryContainer,
+              ),
+            )
+          : null,
       body: Center(child: CircularProgressIndicator()),
     );
   }
