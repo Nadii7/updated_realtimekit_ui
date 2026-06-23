@@ -425,8 +425,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "fluency/0.1.6/v7"
-      resolved-ref: "21c1b5547f85093412f080e571eb1dc60ce463f8"
+      ref: "fluency/0.1.6/v8"
+      resolved-ref: "8f1d0aeaccc7c4fce12a5a7f857a7ffbf6f8e07c"
       url: "https://github.com/Nadii7/updated_realtimekit_core.git"
     source: git
     version: "0.1.6"
@@ -437,7 +437,7 @@ packages:
       sha256: "8503919b9005d3298f2e9ad35a8a59c9cba8cd7b276eb0c21edaceab9c544eb3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.6"
+    version: "0.1.4"
   realtimekit_core_ios:
     dependency: transitive
     description:

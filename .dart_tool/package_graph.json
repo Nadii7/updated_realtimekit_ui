@@ -405,14 +405,6 @@
       ]
     },
     {
-      "name": "realtimekit_core_ios",
-      "version": "0.1.6",
-      "dependencies": [
-        "flutter",
-        "realtimekit_core_platform_interface"
-      ]
-    },
-    {
       "name": "realtimekit_core_platform_interface",
       "version": "0.1.6",
       "dependencies": [
@@ -422,8 +414,16 @@
       ]
     },
     {
-      "name": "realtimekit_core_android",
+      "name": "realtimekit_core_ios",
       "version": "0.1.6",
+      "dependencies": [
+        "flutter",
+        "realtimekit_core_platform_interface"
+      ]
+    },
+    {
+      "name": "realtimekit_core_android",
+      "version": "0.1.4",
       "dependencies": [
         "flutter",
         "realtimekit_core_platform_interface"
