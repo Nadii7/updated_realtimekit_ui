@@ -21,7 +21,7 @@ dependencies:
   flutter_riverpod: ^2.6.1
   realtimekit_core:
     git:
-      ref: fluency/0.1.6/v8
+      ref: fluency/0.1.6/v9
       url: https://github.com/Nadii7/updated_realtimekit_core.git
 
 dev_dependencies:
