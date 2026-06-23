@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
   flutter_localizations:
     sdk: flutter
 
@@ -19,15 +19,12 @@ dependencies:
   dyte_icons: 0.0.3
   file_picker: ^10.3.7
   flutter_riverpod: ^2.6.1
-  realtimekit_core:
-    git:
-      ref: fluency/0.1.6/v9
-      url: https://github.com/Nadii7/updated_realtimekit_core.git
+  realtimekit_core: ^0.1.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+
   melos: ^7.0.0
   flutter_lints: ^6.0.0
 
@@ -38,7 +35,7 @@ flutter:
   assets:
     - pubspec.yaml
     - assets/images/
-  
+
   fonts:
     - family: Inter
       fonts:

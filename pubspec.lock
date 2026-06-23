@@ -424,28 +424,26 @@ packages:
   realtimekit_core:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "fluency/0.1.6/v9"
-      resolved-ref: eeb5326d6cca2da684a591acc6b672733022ea16
-      url: "https://github.com/Nadii7/updated_realtimekit_core.git"
-    source: git
+      name: realtimekit_core
+      sha256: "9de2bdf09aed6ebb4a774c2c89e6f09c98899325a20bd6fa012fd2c3df4b14eb"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.1.6"
   realtimekit_core_android:
     dependency: transitive
     description:
       name: realtimekit_core_android
-      sha256: "8466bd2d68d77dbe73c0745f6d9354905def52d3582e9479b78fbc7ebe890017"
+      sha256: "8503919b9005d3298f2e9ad35a8a59c9cba8cd7b276eb0c21edaceab9c544eb3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.3"
+    version: "0.1.6"
   realtimekit_core_ios:
     dependency: transitive
     description:
-      path: "."
-      ref: main
-      resolved-ref: e3dc639d8b39e72d1f5f9ac040c0a07e302fa470
-      url: "https://github.com/Nadii7/updated_realtimekit_core_ios.git"
-    source: git
+      name: realtimekit_core_ios
+      sha256: "0f6012b54b20ce16da972e557acda75b16d5b265e990b33eef6033ca7ca2c90e"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.1.6"
   realtimekit_core_platform_interface:
     dependency: transitive
