@@ -6,9 +6,10 @@ import 'package:file_picker/file_picker.dart';
 /// - Android prefers content:// URIs when available, falling back to path.
 String resolveShareUri(PlatformFile file) {
   if (Platform.isIOS) {
-    return file.path ?? '';
+    return file.path ?? file.uri.toString();
   }
-  final id = file.identifier;
-  if (id != null && id.startsWith('content://')) return id;
-  return file.path ?? id ?? '';
+  if (file.uri.scheme == 'content') {
+    return file.uri.toString();
+  }
+  return file.path ?? file.uri.toString();
 }

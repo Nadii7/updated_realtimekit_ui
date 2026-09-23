@@ -28,13 +28,11 @@ class ChatActionNotifier extends Notifier<void> {
 
   Future<void> pickAndSendFile(BuildContext context) async {
     try {
-      final result = await FilePicker.platform.pickFiles(
-        allowMultiple: false,
+      final result = await FilePicker.pickFile(
         type: FileType.any,
       );
-      final file = result?.files.firstOrNull;
-      if (file == null) return;
-      final toSend = resolveShareUri(file);
+      if (result == null) return;
+      final toSend = resolveShareUri(result);
       if (toSend.isEmpty) return;
       rtkMeeting.chat.sendFileMessage(toSend, (error) {
         if (error != null) {
@@ -52,13 +50,11 @@ class ChatActionNotifier extends Notifier<void> {
 
   Future<void> pickAndSendImage(BuildContext context) async {
     try {
-      final result = await FilePicker.platform.pickFiles(
-        allowMultiple: false,
+      final result = await FilePicker.pickFile(
         type: FileType.image,
       );
-      final file = result?.files.firstOrNull;
-      if (file == null) return;
-      final toSend = resolveShareUri(file);
+      if (result == null) return;
+      final toSend = resolveShareUri(result);
       if (toSend.isEmpty) return;
       rtkMeeting.chat.sendImageMessage(toSend, (error) {
         if (error != null) {
@@ -73,8 +69,4 @@ class ChatActionNotifier extends Notifier<void> {
           .showCustomNotification(e.toString());
     }
   }
-}
-
-extension<T> on List<T> {
-  T? get firstOrNull => isEmpty ? null : this[0];
 }
