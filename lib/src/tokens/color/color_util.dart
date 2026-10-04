@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 extension ColorsUtils on Color {
   /// Takes in [by] and returns a new color with brightness increased with [by].

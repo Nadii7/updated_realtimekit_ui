@@ -1,7 +1,7 @@
 import 'package:dyte_icons/dyte_icons.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/widgets/utils/clean_pop.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// [DyteReleaseResourceButton] widget is to be used when client exits the SDK

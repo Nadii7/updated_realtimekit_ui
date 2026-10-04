@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/di/riverpod_di.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_text.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RtkMeetingTimerWidget extends ConsumerWidget {

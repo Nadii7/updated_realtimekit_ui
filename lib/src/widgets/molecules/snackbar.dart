@@ -5,7 +5,7 @@ import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 
 Widget getNotificationContentForSnackbar({
@@ -21,10 +21,9 @@ Widget getNotificationContentForSnackbar({
           notification.message,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: AppTheme(globalDesignToken.colorToken)
-              .theme
-              .textTheme
-              .bodyMedium!,
+          style: AppTheme(
+            globalDesignToken.colorToken,
+          ).theme.textTheme.bodyMedium!,
         ),
       ),
       const Spacer(),
@@ -32,30 +31,25 @@ Widget getNotificationContentForSnackbar({
         onTap: ScaffoldMessenger.of(context).hideCurrentSnackBar,
         child: Icon(
           DyteIcons.dismiss,
-          color: AppTheme(globalDesignToken.colorToken)
-              .theme
-              .colorScheme
-              .onPrimary,
+          color: AppTheme(
+            globalDesignToken.colorToken,
+          ).theme.colorScheme.onPrimary,
         ),
-      )
+      ),
     ],
   );
 }
 
-Widget getTextContentForSnackbar(
-  String message,
-  BuildContext context,
-) {
+Widget getTextContentForSnackbar(String message, BuildContext context) {
   return Row(
     children: [
       hspace1,
       Expanded(
         child: Text(
           message,
-          style: AppTheme(globalDesignToken.colorToken)
-              .theme
-              .textTheme
-              .bodyMedium!,
+          style: AppTheme(
+            globalDesignToken.colorToken,
+          ).theme.textTheme.bodyMedium!,
         ),
       ),
       const Spacer(),
@@ -63,12 +57,11 @@ Widget getTextContentForSnackbar(
         onTap: ScaffoldMessenger.of(context).hideCurrentSnackBar,
         child: Icon(
           DyteIcons.dismiss,
-          color: AppTheme(globalDesignToken.colorToken)
-              .theme
-              .colorScheme
-              .onPrimary,
+          color: AppTheme(
+            globalDesignToken.colorToken,
+          ).theme.colorScheme.onPrimary,
         ),
-      )
+      ),
     ],
   );
 }
@@ -80,22 +73,32 @@ void showSnackbarWidget(BuildContext context, Widget content) =>
         onVisible: () async => await HapticFeedback.mediumImpact(),
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(borderToken.getRadius(BorderSize.two)),
+          borderRadius: BorderRadius.circular(
+            borderToken.getRadius(BorderSize.two),
+          ),
         ),
         content: SizedBox(width: context.width * 0.8, child: content),
       ),
     );
 
-Icon _getIconForNotification(NotificationType type) {
-  return {
-    NotificationType.chat:
-        Icon(DyteIcons.chat, color: textColorSwatch.shade1000),
-    NotificationType.poll:
-        Icon(DyteIcons.poll, color: textColorSwatch.shade1000),
-    NotificationType.participant:
-        Icon(DyteIcons.people, color: textColorSwatch.shade1000),
-    NotificationType.plugin:
-        Icon(DyteIcons.rocket, color: textColorSwatch.shade1000),
-  }[type]!;
+Icon _getIconForNotification(NotificationType? type) {
+  return switch (type) {
+    NotificationType.chat => Icon(
+      DyteIcons.chat,
+      color: textColorSwatch.shade1000,
+    ),
+    NotificationType.poll => Icon(
+      DyteIcons.poll,
+      color: textColorSwatch.shade1000,
+    ),
+    NotificationType.participant => Icon(
+      DyteIcons.people,
+      color: textColorSwatch.shade1000,
+    ),
+    NotificationType.plugin => Icon(
+      DyteIcons.rocket,
+      color: textColorSwatch.shade1000,
+    ),
+    _ => Icon(Icons.notifications, color: textColorSwatch.shade1000),
+  };
 }

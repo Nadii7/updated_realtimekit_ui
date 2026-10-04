@@ -3,7 +3,7 @@ import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/data/notifiers/pin_unpin_notifier.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PinnedWidget extends StatefulWidget {
   const PinnedWidget(this.participant, {super.key});

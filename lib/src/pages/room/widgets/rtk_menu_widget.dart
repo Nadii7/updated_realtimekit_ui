@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import '../../polls/polls_screen.dart';
 import '../../setup/settings_page.dart';
 import 'package:dyte_icons/dyte_icons.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/strings.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
@@ -34,9 +34,7 @@ class RtkMenuWidget extends ConsumerWidget {
 
     final muteAllAudios = RtkListTile(
       leading: const Icon(DyteIcons.speaker_off),
-      title: RtkText(
-        RtkStrings.muteAll,
-      ),
+      title: RtkText(RtkStrings.muteAll),
       onTap: () {
         RtkRouter.of(context).pop();
         rtkMeeting.participants.disableAllAudio();
@@ -46,9 +44,7 @@ class RtkMenuWidget extends ConsumerWidget {
     final List<Widget> options = [
       if (rtkMeeting.permissions.poll.canView)
         RtkListTile(
-          leading: const Icon(
-            DyteIcons.poll,
-          ),
+          leading: const Icon(DyteIcons.poll),
           title: RtkText(RtkStrings.polls),
           onTap: () {
             RtkRouter.of(context).pop();
@@ -56,13 +52,11 @@ class RtkMenuWidget extends ConsumerWidget {
               pageName: RouteNames.polls,
               RtkPollsScreen(remainingTime: remainingTime),
             );
-            ref.read(unreadPollsNotifier.notifier).markAllAsRead(
-                  ref.read(pollsListNotifier).length,
-                );
+            ref
+                .read(unreadPollsNotifier.notifier)
+                .markAllAsRead(ref.read(pollsListNotifier).length);
           },
-          trailing: UnreadCountWidget(
-            unreadNotifiers: [unreadPollsNotifier],
-          ),
+          trailing: UnreadCountWidget(unreadNotifiers: [unreadPollsNotifier]),
         ),
       if (rtkMeeting.permissions.chat.canSendText ||
           rtkMeeting.permissions.chat.canSendFiles)
@@ -71,17 +65,15 @@ class RtkMenuWidget extends ConsumerWidget {
           title: RtkText(RtkStrings.chat),
           onTap: () {
             RtkRouter.of(context).pop();
-            ref.read(unreadChatNotifier.notifier).readAllMessages(
-                  ref.read(chatListNotifier).length,
-                );
+            ref
+                .read(unreadChatNotifier.notifier)
+                .readAllMessages(ref.read(chatListNotifier).length);
             RtkRouter.of(context).push(
               pageName: RouteNames.chats,
               ChatsPage(remainingTime: remainingTime),
             );
           },
-          trailing: UnreadCountWidget(
-            unreadNotifiers: [unreadChatNotifier],
-          ),
+          trailing: UnreadCountWidget(unreadNotifiers: [unreadChatNotifier]),
         ),
       RtkListTile(
         leading: const Icon(DyteIcons.participants),
@@ -96,7 +88,7 @@ class RtkMenuWidget extends ConsumerWidget {
         trailing: UnreadCountWidget(
           unreadNotifiers: [
             unreadStageRequestCountNotifier,
-            unreadWaitlistedCountNotifier
+            unreadWaitlistedCountNotifier,
           ],
         ),
       ),
@@ -118,9 +110,7 @@ class RtkMenuWidget extends ConsumerWidget {
       if (hostPermissions.canMuteAudio) muteAllAudios,
       if (canLivestream) const GoLiveButtonWidget(),
       RtkListTile(
-        leading: const Icon(
-          DyteIcons.settings,
-        ),
+        leading: const Icon(DyteIcons.settings),
         title: RtkText(RtkStrings.settings),
         onTap: () {
           RtkRouter.of(context).pop();
@@ -131,22 +121,19 @@ class RtkMenuWidget extends ConsumerWidget {
         },
       ),
     ];
-    return Container(
+    return SizedBox(
       height: options.length * 60,
-      decoration: BoxDecoration(
+      child: Material(
+        clipBehavior: Clip.antiAlias,
         color: theme.colorScheme.primaryContainer,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(
-            borderToken.getRadius(BorderSize.two),
-          ),
-          topRight: Radius.circular(
-            borderToken.getRadius(BorderSize.two),
-          ),
+          topLeft: Radius.circular(borderToken.getRadius(BorderSize.two)),
+          topRight: Radius.circular(borderToken.getRadius(BorderSize.two)),
         ),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: hspace1.width!),
-      child: ListView(
-        children: options,
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: hspace1.width!),
+          children: options,
+        ),
       ),
     );
   }
@@ -159,9 +146,7 @@ class RecorderButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(recordingNotifier) == RecordingState.recording
         ? RtkListTile(
-            leading: const Icon(
-              DyteIcons.stop_recording,
-            ),
+            leading: const Icon(DyteIcons.stop_recording),
             title: RtkText(RtkStrings.stopRecording),
             onTap: () {
               rtkMeeting.recording.stop((err) {});
@@ -169,9 +154,7 @@ class RecorderButton extends ConsumerWidget {
             },
           )
         : RtkListTile(
-            leading: const Icon(
-              DyteIcons.recording,
-            ),
+            leading: const Icon(DyteIcons.recording),
             title: RtkText(RtkStrings.startRecording),
             onTap: () {
               rtkMeeting.recording.start((err) {});

@@ -1,7 +1,7 @@
 import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/tokens/color/status_color.dart';
 import 'package:realtimekit_ui/src/tokens/font/font.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../di/di.dart';
 

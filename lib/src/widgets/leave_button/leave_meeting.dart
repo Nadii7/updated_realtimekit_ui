@@ -7,7 +7,7 @@ import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
 import 'package:realtimekit_ui/src/widgets/core/core.dart';
 import 'package:realtimekit_ui/src/widgets/core/rtk_uikit_component.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RtkLeaveMeetingDialog extends StatelessWidget implements UiKitElement {
   const RtkLeaveMeetingDialog({

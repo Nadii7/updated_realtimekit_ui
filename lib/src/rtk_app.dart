@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/strings.dart';
 import 'package:realtimekit_ui/src/pages/app.dart';

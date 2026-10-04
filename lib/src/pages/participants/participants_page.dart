@@ -16,7 +16,7 @@ import 'package:realtimekit_ui/src/widgets/atoms/rtk_text.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_text_button.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
 import 'package:realtimekit_ui/src/widgets/participant_tile/avatar.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/notifiers/audio_notifier.dart';

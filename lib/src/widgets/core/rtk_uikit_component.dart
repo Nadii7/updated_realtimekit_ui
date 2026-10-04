@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
-abstract class UiKitElement {
+mixin UiKitElement {
   double get borderRadius;
   double get borderWidth;
   Color get fillColor;

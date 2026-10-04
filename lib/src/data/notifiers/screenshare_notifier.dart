@@ -1,7 +1,7 @@
 import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/di/riverpod_di.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RemoteScreenshareNotifier extends Notifier<List<RtkMeetingParticipant>>

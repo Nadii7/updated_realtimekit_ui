@@ -3,7 +3,7 @@ import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/tokens/color/status_color.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RtkIconButton extends StatelessWidget {
   final double? height;

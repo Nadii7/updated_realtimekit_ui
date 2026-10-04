@@ -7,7 +7,7 @@ import 'package:realtimekit_ui/src/pages/room/grid/rtk_page_view_widget.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_app_bar.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/control_bar/rtk_control_bars.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/snackbar.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const appbarHeight = 56.0;

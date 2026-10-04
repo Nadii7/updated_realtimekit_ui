@@ -10,7 +10,7 @@ import 'package:realtimekit_ui/src/widgets/atoms/rtk_icon_button.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_list_tile.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_text.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RtkPluginsScreen extends ConsumerWidget {

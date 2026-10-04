@@ -3,7 +3,7 @@ import 'package:realtimekit_ui/src/pages/room/grid/rtk_page_view_widget.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/control_bar/rtk_control_bars.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../realtimekit_ui.dart';

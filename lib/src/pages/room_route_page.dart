@@ -10,7 +10,7 @@ import 'package:realtimekit_ui/src/pages/waiting_room_page.dart';
 import 'package:realtimekit_ui/src/routes/route_names.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
 import 'package:realtimekit_ui/src/widgets/utils/clean_pop.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

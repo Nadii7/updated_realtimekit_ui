@@ -1,5 +1,5 @@
 import 'package:realtimekit_ui/src/di/di.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PageIndicator extends StatelessWidget {
   final int currentPage;

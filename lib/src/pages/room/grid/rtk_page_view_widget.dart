@@ -1,6 +1,6 @@
 import 'package:realtimekit_ui/src/pages/room/grid/rtk_tab_viewer_widget.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/page_indicator.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'active_participants_widget.dart';
 

@@ -3,7 +3,7 @@ import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/participant_count.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_icon_button.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/widgets/meeting_title/rtk_meeting_title.dart';
 
 import '../../di/di.dart';

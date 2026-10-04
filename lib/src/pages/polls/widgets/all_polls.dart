@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/pages/polls/widgets/poll_card.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AllPolls extends ConsumerStatefulWidget {

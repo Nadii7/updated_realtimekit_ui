@@ -1,7 +1,7 @@
 import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/peer_audio_devices_drop_down.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AudioDevicesLoader extends StatelessWidget {
   const AudioDevicesLoader({super.key});

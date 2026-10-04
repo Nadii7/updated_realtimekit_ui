@@ -3,7 +3,7 @@ import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/core/rtk_uikit_component.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class Avatar extends StatelessWidget with UiKitElement {
   final double? height;

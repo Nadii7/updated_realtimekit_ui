@@ -10,7 +10,7 @@ import 'package:realtimekit_ui/src/utils/generate_key.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/snackbar.dart';
 import 'package:realtimekit_ui/src/widgets/participant_tile/rtk_participant_tile.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/states/waitlisted_participant_states.dart';

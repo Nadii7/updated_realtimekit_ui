@@ -3,7 +3,7 @@ import 'package:realtimekit_ui/src/data/notifiers/video_notifier.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/more_button_widget.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/screenshare_button_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../realtimekit_ui.dart';

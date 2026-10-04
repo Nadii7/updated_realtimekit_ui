@@ -7,7 +7,7 @@ import 'package:realtimekit_ui/src/strings.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_bottom_nav_button.dart';
 import 'package:realtimekit_ui/src/widgets/core/button/rtk_elevated_button.dart';
 import 'package:realtimekit_ui/src/widgets/core/core.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:realtimekit_ui/src/widgets/core/rtk_uikit_component.dart';
 

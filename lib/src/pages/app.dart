@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/strings.dart';
 import 'package:realtimekit_ui/realtimekit_ui.dart';
@@ -6,7 +6,6 @@ import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:realtimekit_ui/src/data/manage_listeners.dart';
 import 'package:realtimekit_ui/src/pages/room_route_page.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class RtkApp extends ConsumerStatefulWidget {
   final bool canExit;
@@ -61,10 +60,10 @@ class _RtkAppState extends ConsumerState<RtkApp> {
   Widget build(BuildContext context) {
     final appTheme = AppTheme(globalDesignToken.colorToken);
     return MaterialApp(
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      supportedLocales: [Locale(RtkStrings.locale)],
       theme: appTheme.theme,
       debugShowCheckedModeBanner: false,
+      supportedLocales: [Locale(RtkStrings.locale)],
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
       home: RoomRoutePage(
         onClose: widget.onClose,
         remainingTime: widget.remainingTime,

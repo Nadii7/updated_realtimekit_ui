@@ -5,7 +5,7 @@ homepage: https://docs.realtime.cloudflare.com/
 description: Cloudflare's RealtimeKit UI SDK to integrate video-audio to your app
 
 environment:
-  sdk: ">=2.19.0 <4.0.0"
+  sdk: ">=3.8.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -15,8 +15,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  get_it: ^9.2.1
+  get_it: ^9.3.0
   dyte_icons: 0.0.3
+  material_ui: ^1.5.0
   file_picker: ^13.1.0
   flutter_riverpod: ^2.6.1
   realtimekit_core:
@@ -28,7 +29,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  melos: ^7.0.0
+  melos: ^8.9.0
   flutter_lints: ^6.0.0
 
 melos:

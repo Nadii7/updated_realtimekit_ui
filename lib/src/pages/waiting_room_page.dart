@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class WaitingRoomPage extends StatelessWidget {
   const WaitingRoomPage({super.key});

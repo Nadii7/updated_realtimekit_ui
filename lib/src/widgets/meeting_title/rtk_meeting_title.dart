@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/core/rtk_uikit_component.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RtkMeetingTitle extends StatelessWidget with UiKitElement {
   RtkMeetingTitle({

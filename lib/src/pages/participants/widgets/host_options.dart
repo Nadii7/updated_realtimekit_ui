@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../di/di.dart';
 
@@ -19,9 +19,9 @@ class HostOptionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppTheme(globalDesignToken.colorToken).theme;
 
-    return Container(
+    return SizedBox(
       height: context.height * .5,
-      decoration: BoxDecoration(
+      child: Material(
         color: theme.colorScheme.primaryContainer,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(
@@ -31,16 +31,17 @@ class HostOptionsWidget extends StatelessWidget {
             borderToken.getRadius(BorderSize.two),
           ),
         ),
-      ),
-      child: ListView.separated(
-        separatorBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Divider(
-            color: theme.colorScheme.tertiaryContainer,
+        clipBehavior: Clip.antiAlias,
+        child: ListView.separated(
+          separatorBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Divider(
+              color: theme.colorScheme.tertiaryContainer,
+            ),
           ),
+          itemBuilder: (context, index) => hostActions[index],
+          itemCount: hostActions.length,
         ),
-        itemBuilder: (context, index) => hostActions[index],
-        itemCount: hostActions.length,
       ),
     );
   }

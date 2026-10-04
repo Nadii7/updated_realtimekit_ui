@@ -1,7 +1,7 @@
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 void showBottomSheetWithWidget(BuildContext context, Widget widget) {
   showModalBottomSheet(

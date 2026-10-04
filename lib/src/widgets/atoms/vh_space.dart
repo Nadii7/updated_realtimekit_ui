@@ -1,5 +1,5 @@
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_config.dart';
-import 'package:flutter/cupertino.dart';
 
 final SizedBox hspace1 = SizedBox(width: SizeConfig.width);
 final SizedBox hspace2 = SizedBox(width: SizeConfig.width * 2);

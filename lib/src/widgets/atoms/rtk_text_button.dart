@@ -2,7 +2,7 @@ import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_core/realtimekit_core.dart';
 import 'package:realtimekit_ui/src/tokens/color/status_color.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_text.dart';
 
 class RtkTextButton extends StatelessWidget {
@@ -62,6 +62,7 @@ class RtkTextButton extends StatelessWidget {
         return brandColorSwatch.shade500;
       case Variant.secondary:
         return backgroundColorSwatch.shade900;
+      // ignore: unreachable_switch_default
       default:
         return brandColorSwatch.shade500;
     }

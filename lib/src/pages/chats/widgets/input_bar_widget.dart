@@ -1,5 +1,5 @@
 import 'package:dyte_icons/dyte_icons.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/pages/chats/widgets/attachments_sheet_widget.dart';

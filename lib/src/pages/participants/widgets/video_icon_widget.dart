@@ -4,7 +4,7 @@ import 'package:realtimekit_ui/src/data/notifiers/video_notifier.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/utils/generate_key.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class VideoIcon extends ConsumerStatefulWidget {

@@ -12,7 +12,7 @@ import 'package:realtimekit_ui/src/widgets/rtk_name_tag/rtk_name_tag.dart';
 import 'package:realtimekit_ui/src/widgets/molecules/pinned_widget.dart';
 import 'package:realtimekit_ui/src/widgets/participant_tile/peer_avatar_view.dart';
 import 'package:realtimekit_ui/src/widgets/participant_tile/peer_video_view.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RtkParticipantTile extends StatefulWidget with UiKitElement {
   final RtkMeetingParticipant participant;

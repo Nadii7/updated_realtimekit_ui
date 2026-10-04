@@ -1,6 +1,6 @@
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Wrapper over text widget, it uses the defualt UI kit styles.
 class RtkText extends StatelessWidget {

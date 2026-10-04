@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/di/riverpod_di.dart';
@@ -82,13 +82,9 @@ class _ChatListWidgetState extends ConsumerState<ChatListWidget> {
           case MessageType.file:
             return KeyedSubtree(
               key: key,
-              child: RtkFileMessageLayout(
-                fileMessage: message as FileMessage,
-              ),
+              child: RtkFileMessageLayout(fileMessage: message as FileMessage),
             );
-          default:
-            return const SizedBox.shrink();
-        }
+          }
       },
     );
   }

@@ -1,5 +1,5 @@
 import 'package:dyte_icons/dyte_icons.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_core/realtimekit_core.dart';
@@ -16,23 +16,18 @@ class AttachmentsSheetWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = AppTheme(globalDesignToken.colorToken).theme;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.primaryContainer,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(
-            borderToken.getRadius(BorderSize.two),
-          ),
-          topRight: Radius.circular(
-            borderToken.getRadius(BorderSize.two),
-          ),
-        ),
+    return Material(
+      color: theme.colorScheme.primaryContainer,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(borderToken.getRadius(BorderSize.two)),
+        topRight: Radius.circular(borderToken.getRadius(BorderSize.two)),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      clipBehavior: Clip.antiAlias,
       child: SafeArea(
         top: false,
         child: ListView(
           shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           children: [
             RtkListTile(
               leading: Icon(

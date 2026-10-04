@@ -3,7 +3,7 @@ import 'package:realtimekit_ui/realtimekit_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/rtk_icon_button.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RecordingToggler extends StatefulWidget {
   final RecordingState recordingState;

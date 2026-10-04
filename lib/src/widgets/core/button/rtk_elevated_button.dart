@@ -5,7 +5,7 @@ import 'package:realtimekit_ui/src/tokens/size/app_size.dart';
 import 'package:realtimekit_ui/src/tokens/theme.dart';
 import 'package:realtimekit_ui/src/widgets/atoms/vh_space.dart';
 import 'package:realtimekit_ui/src/widgets/core/button/rtk_button_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/widgets/core/rtk_uikit_component.dart';
 
 part 'rtk_buttons.dart';

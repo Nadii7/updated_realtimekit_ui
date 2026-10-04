@@ -1,12 +1,12 @@
 import 'package:dyte_icons/dyte_icons.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
 import 'package:realtimekit_core/realtimekit_core.dart';
+import 'package:realtimekit_ui/src/widgets/core/core.dart';
 import 'package:realtimekit_ui/src/tokens/size/app_size.dart';
 import 'package:realtimekit_ui/src/tokens/size/size_util.dart';
-import 'package:realtimekit_ui/src/widgets/core/core.dart';
 import 'package:realtimekit_ui/src/widgets/core/rtk_uikit_component.dart';
 import 'package:realtimekit_ui/src/widgets/leave_button/leave_meeting.dart';
-import 'package:flutter/material.dart';
 
 class RtkLeaveButton extends StatefulWidget with UiKitElement {
   RtkLeaveButton({
