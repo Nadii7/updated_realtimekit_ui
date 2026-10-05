@@ -1,222 +1,230 @@
-import 'package:realtimekit_ui/src/di/riverpod_di.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/foundation.dart';
 import 'package:realtimekit_ui/src/di/di.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:realtimekit_ui/src/di/riverpod_di.dart';
 
 class RtkListenerManager {
   final WidgetRef ref;
 
   RtkListenerManager._(this.ref);
 
-  static late RtkListenerManager? _instance;
+  static RtkListenerManager? _instance;
 
+  /// Replaces the stored instance (and its `ref`) on every call, and detaches
+  /// whatever the previous instance had registered.
   static void init(WidgetRef ref) {
+    _instance?._detach();
     _instance = RtkListenerManager._(ref);
   }
 
   static RtkListenerManager get instance {
-    assert(_instance != null,
-        'ManageListener not initialized, please call init()');
+    assert(
+      _instance != null,
+      'RtkListenerManager not initialized, please call init()',
+    );
     return _instance!;
   }
 
+  final List<void Function()> _removers = [];
+
+  /// Adds [listener] now and remembers how to remove that same instance.
+  void _track<T>(T listener, void Function(T) add, void Function(T) remove) {
+    add(listener);
+    _removers.add(() => remove(listener));
+  }
+
   void registerRtkListeners() {
-    rtkMeeting.addMeetingRoomEventListener(
+    // Guard against double registration without an unregister in between.
+    _detach();
+
+    // Room events
+    _track(
       ref.read(routerNotifier.notifier),
+      rtkMeeting.addMeetingRoomEventListener,
+      rtkMeeting.removeMeetingRoomEventListener,
     );
-    rtkMeeting.addSelfEventListener(
+
+    // Self events
+    _track(
       ref.read(localUserSettingsProvider.notifier),
+      rtkMeeting.addSelfEventListener,
+      rtkMeeting.removeSelfEventListener,
     );
-    rtkMeeting.addSelfEventListener(
+    _track(
       ref.read(routerNotifier.notifier),
+      rtkMeeting.addSelfEventListener,
+      rtkMeeting.removeSelfEventListener,
     );
-    rtkMeeting.addParticipantsEventListener(
+    _track(
+      ref.read(selfScreenshareProvider.notifier),
+      rtkMeeting.addSelfEventListener,
+      rtkMeeting.removeSelfEventListener,
+    );
+
+    // Participants events
+    _track(
       ref.read(participantEventNotifier.notifier),
+      rtkMeeting.addParticipantsEventListener,
+      rtkMeeting.removeParticipantsEventListener,
     );
-
-    rtkMeeting.addChatEventListener(
-      ref.read(chatListNotifier.notifier),
-    );
-    rtkMeeting.addParticipantsEventListener(
+    _track(
       ref.read(gridNotifier.notifier),
+      rtkMeeting.addParticipantsEventListener,
+      rtkMeeting.removeParticipantsEventListener,
     );
 
-    rtkMeeting.addDataUpdateEventListener(
-      ref.read(screenshareProvider.notifier),
+    // Chat events
+    _track(
+      ref.read(chatListNotifier.notifier),
+      rtkMeeting.addChatEventListener,
+      rtkMeeting.removeChatEventListener,
     );
-    rtkMeeting.addRecordingEventListener(
-      ref.read(recordingNotifier.notifier),
-    );
-    rtkMeeting.addDataUpdateEventListener(
-      ref.read(pluginProvider.notifier),
-    );
-    rtkMeeting.addWaitlistEventListener(
-      ref.read(waitingRoomNotifier.notifier),
-    );
-    rtkMeeting.addPollsEventListener(
-      ref.read(newPollEventNotifier.notifier),
-    );
-    rtkMeeting.addPollsEventListener(
-      ref.read(pollsListNotifier.notifier),
-    );
-    rtkMeeting.addPollsEventListener(
-      ref.read(unreadPollsNotifier.notifier),
-    );
-    rtkMeeting.addChatEventListener(
+    _track(
       ref.read(unreadChatNotifier.notifier),
+      rtkMeeting.addChatEventListener,
+      rtkMeeting.removeChatEventListener,
     );
 
-    rtkMeeting.addWaitlistEventListener(
+    // Data update events
+    _track(
+      ref.read(screenshareProvider.notifier),
+      rtkMeeting.addDataUpdateEventListener,
+      rtkMeeting.removeDataUpdateEventListener,
+    );
+    _track(
+      ref.read(pluginProvider.notifier),
+      rtkMeeting.addDataUpdateEventListener,
+      rtkMeeting.removeDataUpdateEventListener,
+    );
+
+    // Recording events
+    _track(
+      ref.read(recordingNotifier.notifier),
+      rtkMeeting.addRecordingEventListener,
+      rtkMeeting.removeRecordingEventListener,
+    );
+
+    // Waitlist events
+    _track(
+      ref.read(waitingRoomNotifier.notifier),
+      rtkMeeting.addWaitlistEventListener,
+      rtkMeeting.removeWaitlistEventListener,
+    );
+    _track(
       ref.read(unreadWaitlistedCountNotifier.notifier),
+      rtkMeeting.addWaitlistEventListener,
+      rtkMeeting.removeWaitlistEventListener,
     );
 
-    rtkMeeting.addStageEventListener(
+    // Polls events
+    _track(
+      ref.read(newPollEventNotifier.notifier),
+      rtkMeeting.addPollsEventListener,
+      rtkMeeting.removePollsEventListener,
+    );
+    _track(
+      ref.read(pollsListNotifier.notifier),
+      rtkMeeting.addPollsEventListener,
+      rtkMeeting.removePollsEventListener,
+    );
+    _track(
+      ref.read(unreadPollsNotifier.notifier),
+      rtkMeeting.addPollsEventListener,
+      rtkMeeting.removePollsEventListener,
+    );
+
+    // Stage events
+    _track(
       ref.read(unreadStageRequestCountNotifier.notifier),
+      rtkMeeting.addStageEventListener,
+      rtkMeeting.removeStageEventListener,
+    );
+    _track(
+      ref.read(stageStatusNotifier.notifier),
+      rtkMeeting.addStageEventListener,
+      rtkMeeting.removeStageEventListener,
+    );
+    _track(
+      ref.read(stageRequestsNotifier.notifier),
+      rtkMeeting.addStageEventListener,
+      rtkMeeting.removeStageEventListener,
+    );
+    _track(
+      ref.read(participantsProvider.notifier),
+      rtkMeeting.addStageEventListener,
+      rtkMeeting.removeStageEventListener,
     );
 
     // For notifications across the SDK
-    rtkMeeting.addChatEventListener(
+    _track(
       ref.read(notificationProvider.notifier),
+      rtkMeeting.addChatEventListener,
+      rtkMeeting.removeChatEventListener,
     );
-    rtkMeeting.addPollsEventListener(
+    _track(
       ref.read(notificationProvider.notifier),
+      rtkMeeting.addPollsEventListener,
+      rtkMeeting.removePollsEventListener,
     );
-    rtkMeeting.addParticipantsEventListener(
+    _track(
       ref.read(notificationProvider.notifier),
+      rtkMeeting.addParticipantsEventListener,
+      rtkMeeting.removeParticipantsEventListener,
     );
-    rtkMeeting.addPluginsEventListener(
+    _track(
       ref.read(notificationProvider.notifier),
+      rtkMeeting.addPluginsEventListener,
+      rtkMeeting.removePluginsEventListener,
     );
-    rtkMeeting.addLivestreamEventListener(
+
+    // Livestream events
+    _track(
       ref.read(lvsStateNotifier.notifier),
-    );
-    rtkMeeting.addStageEventListener(
-      ref.read(stageStatusNotifier.notifier),
-    );
-    rtkMeeting.addStageEventListener(
-      ref.read(stageRequestsNotifier.notifier),
-    );
-
-    rtkMeeting.addSelfEventListener(
-      ref.read(selfScreenshareProvider.notifier),
-    );
-
-    rtkMeeting.addStageEventListener(
-      ref.read(participantsProvider.notifier),
+      rtkMeeting.addLivestreamEventListener,
+      rtkMeeting.removeLivestreamEventListener,
     );
   }
 
+  /// Detaches every listener that was registered, then resets provider state.
+  ///
+  /// Detaching happens first, using the remembered instances, and only then
+  /// are the providers invalidated.
   void unregisterRtkListeners() {
-    rtkMeeting.removeSelfEventListener(
-      ref.read(localUserSettingsProvider.notifier),
-    );
+    _detach();
+
     ref.invalidate(localUserSettingsProvider);
-
-    rtkMeeting.removeSelfEventListener(
-      ref.read(routerNotifier.notifier),
-    );
     ref.invalidate(routerNotifier);
-
-    rtkMeeting.removeParticipantsEventListener(
-      ref.read(participantEventNotifier.notifier),
-    );
     ref.invalidate(participantEventNotifier);
-
-    rtkMeeting.removeChatEventListener(
-      ref.read(chatListNotifier.notifier),
-    );
     ref.invalidate(chatListNotifier);
-
-    rtkMeeting.removeParticipantsEventListener(
-      ref.read(gridNotifier.notifier),
-    );
     ref.invalidate(gridNotifier);
-
-    rtkMeeting.removeDataUpdateEventListener(
-      ref.read(screenshareProvider.notifier),
-    );
     ref.invalidate(screenshareProvider);
-
-    rtkMeeting.removeRecordingEventListener(
-      ref.read(recordingNotifier.notifier),
-    );
     ref.invalidate(recordingNotifier);
-
-    rtkMeeting.removeDataUpdateEventListener(
-      ref.read(pluginProvider.notifier),
-    );
     ref.invalidate(pluginProvider);
-
-    rtkMeeting.removeWaitlistEventListener(
-      ref.read(waitingRoomNotifier.notifier),
-    );
     ref.invalidate(waitingRoomNotifier);
-
-    rtkMeeting.removePollsEventListener(
-      ref.read(newPollEventNotifier.notifier),
-    );
     ref.invalidate(newPollEventNotifier);
-
-    rtkMeeting.removePollsEventListener(
-      ref.read(pollsListNotifier.notifier),
-    );
     ref.invalidate(pollsListNotifier);
-
-    rtkMeeting.removePollsEventListener(
-      ref.read(unreadPollsNotifier.notifier),
-    );
     ref.invalidate(unreadPollsNotifier);
-
-    rtkMeeting.removeChatEventListener(
-      ref.read(unreadChatNotifier.notifier),
-    );
     ref.invalidate(unreadChatNotifier);
-
-    rtkMeeting.removeWaitlistEventListener(
-      ref.read(unreadWaitlistedCountNotifier.notifier),
-    );
     ref.invalidate(unreadWaitlistedCountNotifier);
-
-    rtkMeeting.removeStageEventListener(
-      ref.read(unreadStageRequestCountNotifier.notifier),
-    );
     ref.invalidate(unreadStageRequestCountNotifier);
-
-    // For notifications across the SDK
-    rtkMeeting.removeChatEventListener(
-      ref.read(notificationProvider.notifier),
-    );
-    rtkMeeting.removePollsEventListener(
-      ref.read(notificationProvider.notifier),
-    );
-    rtkMeeting.removeParticipantsEventListener(
-      ref.read(notificationProvider.notifier),
-    );
-    rtkMeeting.removePluginsEventListener(
-      ref.read(notificationProvider.notifier),
-    );
     ref.invalidate(notificationProvider);
-
-    rtkMeeting.removeLivestreamEventListener(
-      ref.read(lvsStateNotifier.notifier),
-    );
     ref.invalidate(lvsStateNotifier);
-
-    rtkMeeting.removeStageEventListener(
-      ref.read(stageStatusNotifier.notifier),
-    );
-    rtkMeeting.removeStageEventListener(
-      ref.read(stageRequestsNotifier.notifier),
-    );
     ref.invalidate(stageStatusNotifier);
-
-    rtkMeeting.removeSelfEventListener(
-      ref.read(selfScreenshareProvider.notifier),
-    );
+    ref.invalidate(stageRequestsNotifier);
     ref.invalidate(selfScreenshareProvider);
-
-    rtkMeeting.removeStageEventListener(
-      ref.read(participantsProvider.notifier),
-    );
     ref.invalidate(participantsProvider);
+  }
+
+  void detachListeners() => _detach();
+
+  void _detach() {
+    for (final remove in _removers) {
+      try {
+        remove();
+      } catch (e) {
+        debugPrint('RtkListenerManager: failed to remove listener: $e');
+      }
+    }
+    _removers.clear();
   }
 }

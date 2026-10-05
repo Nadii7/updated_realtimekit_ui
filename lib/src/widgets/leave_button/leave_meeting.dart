@@ -31,9 +31,7 @@ class RtkLeaveMeetingDialog extends StatelessWidget implements UiKitElement {
       content: Container(
         padding: const EdgeInsets.all(16),
         width: double.maxFinite,
-        decoration: BoxDecoration(
-          color: fillColor,
-        ),
+        decoration: BoxDecoration(color: fillColor),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,10 +71,26 @@ class RtkLeaveMeetingDialog extends StatelessWidget implements UiKitElement {
                     label: RtkStrings.leave,
                     height: AppSize.s10,
                     backgroundColor: globalDesignToken.colorToken.danger,
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.of(context, rootNavigator: true).pop();
-                      meeting.leaveRoom();
-                      if (onClose != null) onClose!();
+
+                      try {
+                        meeting.leaveRoom();
+                      } catch (e) {
+                        debugPrint('leaveRoom failed: $e');
+                      }
+                      try {
+                        meeting.cleanAllNativeListeners();
+                      } catch (e) {
+                        debugPrint('cleanAllNativeListeners failed: $e');
+                      }
+                      try {
+                        await meeting.release();
+                      } catch (e) {
+                        debugPrint('release failed: $e');
+                      } finally {
+                        onClose?.call();
+                      }
                     },
                   ),
                 ),
@@ -93,7 +107,7 @@ class RtkLeaveMeetingDialog extends StatelessWidget implements UiKitElement {
                   meeting.participants.kickAll();
                 },
               ),
-            ]
+            ],
           ],
         ),
       ),

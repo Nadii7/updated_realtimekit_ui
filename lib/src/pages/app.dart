@@ -27,33 +27,63 @@ class RtkApp extends ConsumerStatefulWidget {
 }
 
 class _RtkAppState extends ConsumerState<RtkApp> {
+  bool _tornDown = false;
+
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
     RtkListenerManager.init(ref);
-    if (mounted) {
-      RtkListenerManager.instance.registerRtkListeners();
-    }
+    RtkListenerManager.instance.registerRtkListeners();
   }
 
   @override
   void didUpdateWidget(RtkApp oldWidget) {
     super.didUpdateWidget(oldWidget);
-
-    // Check if canExit changed from false to true
     if (!oldWidget.canExit && widget.canExit) {
       _handleExit();
     }
   }
 
   void _handleExit() {
-    if (widget.onExit != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        rtkMeeting.leaveRoom();
-        widget.onExit!();
-      });
+    if (widget.onExit == null) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _teardownMeeting();
+      if (mounted) widget.onExit!();
+    });
+  }
+
+  Future<void> _teardownMeeting() async {
+    if (_tornDown) return;
+    _tornDown = true;
+
+    try {
+      rtkMeeting.leaveRoom();
+    } catch (e) {
+      debugPrint('leaveRoom failed: $e');
     }
+    try {
+      RtkListenerManager.instance.unregisterRtkListeners();
+    } catch (e) {
+      debugPrint('unregisterRtkListeners failed: $e');
+    }
+    try {
+      rtkMeeting.cleanAllNativeListeners();
+    } catch (e) {
+      debugPrint('cleanAllNativeListeners failed: $e');
+    }
+    try {
+      await rtkMeeting.release();
+    } catch (e) {
+      debugPrint('release failed: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    // Safety net only: no ref usage, nothing async.
+    RtkListenerManager.instance.detachListeners();
+    RealtimeKitUIBuilder.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,12 +99,6 @@ class _RtkAppState extends ConsumerState<RtkApp> {
         remainingTime: widget.remainingTime,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    RealtimeKitUIBuilder.dispose();
-    super.dispose();
   }
 }
 
