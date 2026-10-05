@@ -47,35 +47,12 @@ class _RtkAppState extends ConsumerState<RtkApp> {
   void _handleExit() {
     if (widget.onExit == null) return;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _teardownMeeting();
-      if (mounted) widget.onExit!();
+      try {
+        rtkMeeting.leaveRoom();
+      } finally {
+        widget.onExit!();
+      }
     });
-  }
-
-  Future<void> _teardownMeeting() async {
-    if (_tornDown) return;
-    _tornDown = true;
-
-    try {
-      rtkMeeting.leaveRoom();
-    } catch (e) {
-      debugPrint('leaveRoom failed: $e');
-    }
-    try {
-      RtkListenerManager.instance.unregisterRtkListeners();
-    } catch (e) {
-      debugPrint('unregisterRtkListeners failed: $e');
-    }
-    try {
-      rtkMeeting.cleanAllNativeListeners();
-    } catch (e) {
-      debugPrint('cleanAllNativeListeners failed: $e');
-    }
-    try {
-      await rtkMeeting.release();
-    } catch (e) {
-      debugPrint('release failed: $e');
-    }
   }
 
   @override
