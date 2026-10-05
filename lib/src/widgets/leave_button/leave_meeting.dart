@@ -71,26 +71,11 @@ class RtkLeaveMeetingDialog extends StatelessWidget implements UiKitElement {
                     label: RtkStrings.leave,
                     height: AppSize.s10,
                     backgroundColor: globalDesignToken.colorToken.danger,
-                    onPressed: () async {
+                    onPressed: () {
                       Navigator.of(context, rootNavigator: true).pop();
 
-                      try {
-                        meeting.leaveRoom();
-                      } catch (e) {
-                        debugPrint('leaveRoom failed: $e');
-                      }
-                      try {
-                        meeting.cleanAllNativeListeners();
-                      } catch (e) {
-                        debugPrint('cleanAllNativeListeners failed: $e');
-                      }
-                      try {
-                        await meeting.release();
-                      } catch (e) {
-                        debugPrint('release failed: $e');
-                      } finally {
-                        onClose?.call();
-                      }
+                      meeting.leaveRoom();
+                      if (onClose != null) onClose!();
                     },
                   ),
                 ),
