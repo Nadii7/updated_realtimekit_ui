@@ -1,6 +1,7 @@
 # RealtimeKit UI
 
 ## 0.4.0
+- fix: await native listener cleanup before popping the UI
 - fix: use common CI components and scripts [RTK-7867]
 
 ## 0.1.4

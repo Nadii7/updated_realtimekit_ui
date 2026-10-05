@@ -12,7 +12,7 @@ class RtkUtils {
   Future<void> cleanAndPopUiKit(WidgetRef ref) async {
     final navigator = Navigator.of(context, rootNavigator: true);
     RtkListenerManager.instance.unregisterRtkListeners();
-    rtkMeeting.cleanAllNativeListeners();
+    await rtkMeeting.cleanAllNativeListeners();
     rtkMeeting.removeMeetingRoomEventListener(
       ref.read(routerNotifier.notifier),
     );
